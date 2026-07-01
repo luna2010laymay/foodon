@@ -147,8 +147,27 @@ const PRODUCTS = [
 ];
 
 
+// 성분명 정리: 괄호(원산지)는 유지, 괄호 밖의 퍼센트·함량 수치만 제거
+function cleanName(s) {
+  const parens = []; // 괄호(원산지) 보관 — 단, 내부 % 는 제거
+  let t = String(s).replace(/\([^)]*\)/g, (m) => { parens.push(m.replace(/\d+(?:\.\d+)?\s*%/g, "").replace(/\s*·\s*/g, "·").replace(/\(\s+/g, "(").replace(/\s+\)/g, ")")); return " " + (parens.length - 1) + " "; });
+  t = t.replace(/\d+(?:\.\d+)?\s*%/g, "");                      // 괄호 밖 퍼센트 제거
+  t = t.replace(/ (\d+) /g, (_, i) => parens[+i]);    // 괄호(원산지) 복원
+  return t.replace(/\(\s*\)/g, "").replace(/\s+\(/g, "(").replace(/\s+/g, " ").trim();
+}
+// 성분 파싱: 대괄호[...] 복합성분은 대표명 + 세부성분으로 분리
+function parseIng(raw) {
+  const m = String(raw).match(/^([^\[]+)\[(.*)\]\s*$/);
+  if (m) return { main: cleanName(m[1]), subs: m[2].split(",").map(cleanName).filter(Boolean) };
+  return { main: cleanName(raw), subs: [] };
+}
+// 제품의 모든 성분명(대표 + 세부, 정리본)
+function ingNames(p) {
+  return p.ing.flatMap(([n]) => { const { main, subs } = parseIng(n); return [main, ...subs]; });
+}
+
 const ALL_INGREDIENTS = Array.from(
-  new Set(PRODUCTS.flatMap((p) => p.ing.map(([n]) => n)))
+  new Set(PRODUCTS.flatMap((p) => ingNames(p)))
 ).sort((a, b) => a.localeCompare(b, "ko"));
 
 function Tag({ labelKey, onClick, title }) {
@@ -176,22 +195,23 @@ export default function IngredientSearchApp() {
   const [sugarFree, setSugarFree] = useState(false);     // 설탕류 없는 제품만
   const [simpleOnly, setSimpleOnly] = useState(false);     // 성분 5개 이하만
   const [detail, setDetail] = useState(null);
+  const [ingDetail, setIngDetail] = useState(null); // 성분 상세 시트 { name, labels }
   const [pickerOpen, setPickerOpen] = useState(null); // 'exclude' | 'include' | null
   const [showMore, setShowMore] = useState(false);    // 상세 필터 펼침 여부
 
   const results = useMemo(() => {
     const q = productQuery.trim().toLowerCase();
-    const hasGluten = (p) => p.ing.some(([n]) => /밀|보리|호밀|맥아/.test(n)) || (p.contains && p.contains.includes("밀"));
-    const hasSugar = (p) => p.ing.some(([n]) => /설탕|물엿|원당|시럽/.test(n));
     return PRODUCTS.filter((p) => {
-      const names = p.ing.map(([n]) => n);
+      const names = ingNames(p);
+      const hasGluten = names.some((n) => /밀|보리|호밀|맥아/.test(n)) || (p.contains && p.contains.includes("밀"));
+      const hasSugar = names.some((n) => /설탕|물엿|원당|시럽/.test(n));
       const okExclude = exclude.every((ex) => !names.includes(ex));
       const okInclude = include.every((inc) => names.includes(inc));
       const okVegan = !veganOnly || p.ing.every(([, ls]) => !ls.includes("animal"));
       const okAllergy = !allergyFree || (!(p.contains && p.contains.length) && p.ing.every(([, ls]) => !ls.includes("allergy")));
       const okAdditive = !additiveFree || p.ing.every(([, ls]) => !ls.includes("additive"));
-      const okGluten = !glutenFree || !hasGluten(p);
-      const okSugar = !sugarFree || !hasSugar(p);
+      const okGluten = !glutenFree || !hasGluten;
+      const okSugar = !sugarFree || !hasSugar;
       const okSimple = !simpleOnly || p.ing.length <= 5;
       const okName = q === "" ||
         p.name.toLowerCase().includes(q) ||
@@ -420,17 +440,31 @@ export default function IngredientSearchApp() {
                   : ls.includes("additive") ? LABELS.additive : null;
                 const tx = primary ? primary.tx : C.sage;
                 const bg = primary ? primary.bg : C.sageSoft;
+                const { main, subs } = parseIng(n);
                 return (
-                  <span key={i} title={primary ? primary.note : ""}
-                    style={{ fontSize: 13, fontWeight: 600, color: tx, background: bg,
-                      padding: "5px 11px", borderRadius: 999, lineHeight: 1.5 }}>
-                    #{n}
+                  <span key={i} style={{ display: "inline-flex", alignItems: "center", flexWrap: "wrap", gap: 4 }}>
+                    <button onClick={() => setIngDetail({ name: main, labels: ls })}
+                      title={primary ? primary.note : ""}
+                      style={{ fontSize: 13, fontWeight: 600, color: tx, background: bg,
+                        padding: "5px 11px", borderRadius: 999, lineHeight: 1.5, border: "none",
+                        cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 3 }}>
+                      #{main}<span style={{ fontSize: 11, opacity: 0.6 }}>›</span>
+                    </button>
+                    {subs.map((s, j) => (
+                      <button key={j} onClick={() => setIngDetail({ name: s, labels: [] })}
+                        title="세부 구성 성분"
+                        style={{ fontSize: 10.5, fontWeight: 600, color: C.sub, background: C.bg,
+                          border: "1px solid " + C.line, padding: "2px 8px", borderRadius: 999,
+                          lineHeight: 1.5, cursor: "pointer" }}>
+                        #{s}
+                      </button>
+                    ))}
                   </span>
                 );
               })}
             </div>
             <div style={{ fontSize: 10.5, color: C.sub, marginBottom: 6 }}>
-              색이 있는 태그는 알러지·동물성·첨가물 표시 성분이에요(아래 설명 참고).
+              성분을 누르면 상세 설명을 볼 수 있어요. 색이 있는 태그는 알러지·동물성·첨가물 표시 성분이에요.
             </div>
 
 
@@ -515,6 +549,44 @@ export default function IngredientSearchApp() {
                 <div style={{ fontSize: 13, color: "#444", marginTop: 6, lineHeight: 1.5 }}>{r[1]}</div>
               </div>
             ))}
+          </Sheet>
+        )}
+
+        {/* 성분 상세 시트 (상세 페이지 위에 한 겹 더) */}
+        {ingDetail && (
+          <Sheet onClose={() => setIngDetail(null)} title={"#" + ingDetail.name}>
+            {ingDetail.labels.length > 0 ? (
+              <>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 12 }}>
+                  {ingDetail.labels.map((k) => <Tag key={k} labelKey={k} />)}
+                </div>
+                {ingDetail.labels.map((k) => LABELS[k] && (
+                  <div key={k} style={{ background: LABELS[k].bg, borderRadius: 12,
+                    padding: "12px 14px", marginBottom: 8 }}>
+                    <b style={{ color: LABELS[k].tx, fontSize: 13 }}>{LABELS[k].text}</b>
+                    <div style={{ fontSize: 12, color: C.ink, marginTop: 4, lineHeight: 1.6 }}>
+                      {LABELS[k].note}
+                    </div>
+                  </div>
+                ))}
+              </>
+            ) : (
+              <div style={{ fontSize: 13, color: C.sub, lineHeight: 1.6, padding: "6px 2px 12px" }}>
+                이 성분은 알러지·동물성·첨가물 표시대상이 아니에요.
+              </div>
+            )}
+
+            <div style={{ marginTop: 6, padding: "12px 14px", background: C.sageSoft,
+              borderRadius: 12, fontSize: 12.5, color: C.ink }}>
+              이 성분이 들어간 제품{" "}
+              <b>{PRODUCTS.filter((p) => ingNames(p).includes(ingDetail.name)).length}개</b>
+            </div>
+
+            <button onClick={() => { addChip("include", ingDetail.name); setIngDetail(null); setDetail(null); }}
+              style={{ width: "100%", marginTop: 12, padding: "13px", borderRadius: 12, border: "none",
+                background: C.incl, color: "#fff", fontSize: 14, fontWeight: 700, cursor: "pointer" }}>
+              ＋ 이 성분 넣고 검색하기
+            </button>
           </Sheet>
         )}
       </div>
