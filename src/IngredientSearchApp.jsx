@@ -313,7 +313,7 @@ export default function IngredientSearchApp() {
         {/* 필터 영역 — 핵심 기능: 이 성분은 빼고 검색 */}
         <div style={{ padding: "16px 20px 8px" }}>
           {/* 제외 (히어로) */}
-          <FilterRow title="🚫 이 성분은 빼고 검색" empty="예: 우유, 계란, 밀가루, 새우"
+          <FilterRow title="✕ 이 성분은 빼고 검색" empty="예: 우유, 계란, 밀가루, 새우"
             chips={exclude} color={C.sage} onAdd={() => { setPickerOpen("exclude"); setQuery(""); }}
             onRemove={(n) => removeChip("exclude", n)} />
 
