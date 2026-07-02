@@ -249,6 +249,9 @@ export default function IngredientSearchApp() {
   const [ingDetail, setIngDetail] = useState(null); // 성분 상세 시트 { name, labels }
   const [pickerOpen, setPickerOpen] = useState(null); // 'exclude' | 'include' | null
   const [showMore, setShowMore] = useState(false);    // 상세 필터 펼침 여부
+  const [showOnboarding, setShowOnboarding] = useState(() => {
+    try { return localStorage.getItem("foodon_onboarded") !== "1"; } catch { return true; }
+  }); // 첫 방문 온보딩
 
   const results = useMemo(() => {
     const q = productQuery.trim().toLowerCase();
@@ -296,6 +299,13 @@ export default function IngredientSearchApp() {
   // 상세 필터에서 현재 켜져 있는 개수 (접혀 있어도 배지로 표시)
   const advToggleCount = [veganOnly, allergyFree, additiveFree, glutenFree, sugarFree, simpleOnly].filter(Boolean).length;
   const advCount = advToggleCount + include.length;
+
+  if (showOnboarding) {
+    return <Onboarding onDone={() => {
+      try { localStorage.setItem("foodon_onboarded", "1"); } catch {}
+      setShowOnboarding(false);
+    }} />;
+  }
 
   return (
     <div style={{ display: "flex", justifyContent: "center", background: "#FFFFFF",
@@ -649,6 +659,124 @@ export default function IngredientSearchApp() {
             </button>
           </Sheet>
         )}
+      </div>
+    </div>
+  );
+}
+
+/* ===== 온보딩 ===== */
+function OnbCheck() {
+  return <span style={{ width: 22, height: 22, borderRadius: 999, background: C.incl, color: "#fff",
+    display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 12, flexShrink: 0 }}>✓</span>;
+}
+function OnbChip({ text, kind }) {
+  const s = {
+    plain:   { bg: "#fff",          tx: C.sub,          bd: C.line },
+    allergy: { bg: C.tagAllergyBg,  tx: C.tagAllergyTx, bd: "transparent" },
+    sage:    { bg: "#DCE8E0",       tx: C.sage,         bd: "transparent" },
+    gray:    { bg: "#E7E7E2",       tx: C.sub,          bd: "transparent" },
+  }[kind];
+  return <span style={{ fontSize: 12.5, fontWeight: 700, padding: "6px 11px", borderRadius: 999,
+    background: s.bg, color: s.tx, border: "1px solid " + s.bd }}>{text}</span>;
+}
+function OnbProduct({ emoji, cat, name, tags }) {
+  return (
+    <div style={{ background: "#fff", borderRadius: 14, padding: "11px 13px", marginTop: 12 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 11 }}>
+        <div style={{ width: 42, height: 42, borderRadius: 11, background: C.sageSoft, fontSize: 22,
+          display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{emoji}</div>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontSize: 11.5, color: C.sub }}>{cat}</div>
+          <div style={{ fontSize: 15, fontWeight: 800, marginTop: 1, color: C.ink }}>{name}</div>
+        </div>
+        <OnbCheck />
+      </div>
+      {tags && (
+        <div style={{ display: "flex", gap: 6, marginTop: 9 }}>
+          {tags.map((t, k) => <OnbChip key={k} text={t.text} kind={t.kind} />)}
+        </div>
+      )}
+    </div>
+  );
+}
+function OnbSearchCard() {
+  return (
+    <div style={{ background: C.sageSoft, borderRadius: 24, padding: 18 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 9, background: "#fff", borderRadius: 12,
+        padding: "13px 14px" }}>
+        <span style={{ color: C.sub, fontSize: 14 }}>🔍</span>
+        <span style={{ fontSize: 14, color: C.ink }}>그래놀라</span>
+        <span style={{ width: 1.5, height: 15, background: C.sage, borderRadius: 2 }} />
+      </div>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 12 }}>
+        <OnbChip text="#귀리" kind="plain" />
+        <OnbChip text="#대두 · 알러지" kind="allergy" />
+        <OnbChip text="#꿀 · 동물성" kind="sage" />
+        <OnbChip text="#아몬드" kind="plain" />
+      </div>
+      <OnbProduct emoji="🥣" cat="오트빌 · 시리얼" name="오리지널 그래놀라" />
+    </div>
+  );
+}
+function OnbFilterCard() {
+  const tog = (text, on) => (
+    <span style={{ flex: 1, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 4,
+      fontSize: 12.5, fontWeight: 700, padding: "8px 4px", borderRadius: 999, whiteSpace: "nowrap",
+      background: on ? C.sage : "#fff", color: on ? "#fff" : C.ink,
+      border: "1.5px solid " + (on ? C.sage : C.line) }}>{on ? "✓ " : ""}{text}</span>
+  );
+  return (
+    <div style={{ background: C.sageSoft, borderRadius: 24, padding: 18 }}>
+      <div style={{ display: "flex", gap: 7 }}>
+        {tog("동물성 No", true)}{tog("알러지 No", true)}{tog("첨가물 No", false)}
+      </div>
+      <OnbProduct emoji="🥛" cat="콩담은 · 음료" name="클래식 두유"
+        tags={[{ text: "알러지 · 대두", kind: "allergy" }, { text: "동물성 없음", kind: "gray" }]} />
+    </div>
+  );
+}
+function Onboarding({ onDone }) {
+  const [i, setI] = useState(0);
+  const slides = [
+    { card: <OnbSearchCard />, title: ["성분으로 검색해서", "직접 골라요"],
+      desc: ["먹고 싶은 식품을 성분으로 찾아보고,", "내게 필요한 정보로 직접 확인해요."] },
+    { card: <OnbFilterCard />, title: ["나에게 맞는 먹거리를", "더 쉽게 찾아요"],
+      desc: ["알러지·채식·첨가물 조건으로", "내게 맞는 식품만 골라서 확인해요."] },
+  ];
+  const last = i === slides.length - 1;
+  const s = slides[i];
+  return (
+    <div style={{ display: "flex", justifyContent: "center", background: "#FFFFFF", padding: "24px 12px",
+      fontFamily: "'Pretendard','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif",
+      color: C.ink, minHeight: "100%" }}>
+      <div style={{ width: 390, maxWidth: "100%", background: C.bg, borderRadius: 28, overflow: "hidden",
+        boxShadow: "0 18px 50px rgba(35,41,31,.18)", border: "1px solid " + C.line, minHeight: 760,
+        display: "flex", flexDirection: "column", padding: "16px 22px 24px" }}>
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <button onClick={onDone} style={{ border: "none", background: "none", color: C.sub,
+            fontSize: 14, fontWeight: 600, cursor: "pointer", padding: 4 }}>건너뛰기</button>
+        </div>
+        <div style={{ marginTop: 8 }}>{s.card}</div>
+        <div style={{ marginTop: 28 }}>
+          <div style={{ fontSize: 27, fontWeight: 800, lineHeight: 1.32, letterSpacing: -0.5, color: C.ink }}>
+            {s.title.map((t, k) => <div key={k}>{t}</div>)}
+          </div>
+          <div style={{ fontSize: 14.5, color: C.sub, lineHeight: 1.6, marginTop: 12 }}>
+            {s.desc.map((t, k) => <div key={k}>{t}</div>)}
+          </div>
+        </div>
+        <div style={{ flex: 1 }} />
+        <div style={{ display: "flex", justifyContent: "center", gap: 6, marginBottom: 16 }}>
+          {slides.map((_, k) => (
+            <span key={k} style={{ height: 6, width: k === i ? 22 : 6, borderRadius: 999,
+              background: k === i ? C.sage : "#D6D9CF", transition: "all .25s ease" }} />
+          ))}
+        </div>
+        <button onClick={() => (last ? onDone() : setI(i + 1))}
+          style={{ width: "100%", padding: "15px", borderRadius: 14, border: "none", background: C.sage,
+            color: "#fff", fontSize: 16, fontWeight: 800, cursor: "pointer" }}>
+          {last ? "시작하기" : "다음"}
+        </button>
       </div>
     </div>
   );
