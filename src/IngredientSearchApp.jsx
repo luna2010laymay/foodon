@@ -170,6 +170,33 @@ const ALL_INGREDIENTS = Array.from(
   new Set(PRODUCTS.flatMap((p) => ingNames(p)))
 ).sort((a, b) => a.localeCompare(b, "ko"));
 
+// 한국인 10대 알레르기 유발 식품(발생 빈도순) — 뺄 성분 picker 상단에 이 순서로 노출
+const ALLERGEN_PRIORITY = ["계란", "우유", "밀", "갑각류", "생선", "호두", "돼지고기", "땅콩", "조개", "복숭아"];
+// 분류명 → 실제 데이터에 등장하는 표기 변형(전성분·함유 표기 매칭용)
+const ALLERGEN_SYNONYMS = {
+  "계란": ["계란", "달걀", "알류", "난백", "난황", "전란"],
+  "우유": ["우유", "유청", "유장", "분유", "치즈", "버터", "유크림", "탈지분유", "연유"],
+  "밀": ["밀", "글루텐"],
+  "갑각류": ["갑각류", "게", "새우", "랍스터", "가재", "크릴"],
+  "생선": ["생선", "고등어", "연어", "참치", "명태", "대구", "멸치", "가다랑어", "황태", "북어"],
+  "호두": ["호두"],
+  "돼지고기": ["돼지고기", "돈육"],
+  "땅콩": ["땅콩", "낙화생"],
+  "조개": ["조개", "굴", "전복", "홍합", "바지락", "가리비", "꼬막"],
+  "복숭아": ["복숭아"],
+};
+// 제품이 해당 성분(또는 알레르기 분류)을 포함하는지 — 전성분명 + 함유(contains) 표기 기준
+function productHasIngredient(p, ex) {
+  const names = ingNames(p);
+  if (names.includes(ex)) return true;              // 일반 성분: 전성분명 정확 일치
+  const syns = ALLERGEN_SYNONYMS[ex];
+  if (syns) {                                        // 알레르기 분류: 표기 변형 부분 일치
+    const hay = [...names, ...(p.contains || [])].join(" ");
+    return syns.some((s) => hay.includes(s));
+  }
+  return false;
+}
+
 function Tag({ labelKey, onClick, title }) {
   const l = LABELS[labelKey];
   if (!l) return null;
@@ -205,7 +232,7 @@ export default function IngredientSearchApp() {
       const names = ingNames(p);
       const hasGluten = names.some((n) => /밀|보리|호밀|맥아/.test(n)) || (p.contains && p.contains.includes("밀"));
       const hasSugar = names.some((n) => /설탕|물엿|원당|시럽/.test(n));
-      const okExclude = exclude.every((ex) => !names.includes(ex));
+      const okExclude = exclude.every((ex) => !productHasIngredient(p, ex));
       const okInclude = include.every((inc) => names.includes(inc));
       const okVegan = !veganOnly || p.ing.every(([, ls]) => !ls.includes("animal"));
       const okAllergy = !allergyFree || (!(p.contains && p.contains.length) && p.ing.every(([, ls]) => !ls.includes("allergy")));
@@ -224,9 +251,12 @@ export default function IngredientSearchApp() {
 
   const pickerList = useMemo(() => {
     if (!pickerOpen) return [];
-    return ALL_INGREDIENTS.filter(
-      (n) => n.toLowerCase().includes(query.toLowerCase())
-    );
+    // 뺄 성분: 10대 알레르기를 빈도순으로 맨 위에 노출한 뒤 나머지 성분(가나다순)
+    const base = pickerOpen === "exclude"
+      ? [...ALLERGEN_PRIORITY, ...ALL_INGREDIENTS.filter((n) => !ALLERGEN_PRIORITY.includes(n))]
+      : ALL_INGREDIENTS;
+    const q = query.toLowerCase();
+    return base.filter((n) => n.toLowerCase().includes(q));
   }, [pickerOpen, query]);
 
   const addChip = (type, name) => {
