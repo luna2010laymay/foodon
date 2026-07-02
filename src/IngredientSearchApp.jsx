@@ -337,7 +337,13 @@ export default function IngredientSearchApp() {
         {/* 필터 영역 — 핵심 기능: 이 성분은 빼고 검색 */}
         <div style={{ padding: "16px 20px 8px" }}>
           {/* 제외 (히어로) */}
-          <FilterRow title="✕ 이 성분은 빼고 검색" empty="예: 우유, 계란, 밀가루, 새우"
+          <FilterRow title={<span style={{ display: "inline-flex", alignItems: "center", gap: 7 }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                strokeWidth="2.2" strokeLinecap="round">
+                <circle cx="12" cy="12" r="9" /><line x1="5.6" y1="5.6" x2="18.4" y2="18.4" />
+              </svg>
+              이 성분은 빼고 검색
+            </span>} empty="예: 우유, 계란, 밀가루, 새우"
             chips={exclude} color={C.sage} onAdd={() => { setPickerOpen("exclude"); setQuery(""); }}
             onRemove={(n) => removeChip("exclude", n)} />
 
