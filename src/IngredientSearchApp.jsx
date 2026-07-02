@@ -13,8 +13,8 @@ const C = {
   ink: "#23291F",
   sub: "#6E7468",
   line: "#E5E2D9",
-  sage: "#3E7C6A",       // 액센트 (브랜드)
-  sageSoft: "#E4EFEA",
+  sage: "#2F6D54",       // 액센트 (브랜드) — 딥 포레스트
+  sageSoft: "#E3EEE9",
   orange: "#E2640F",     // Food 강조용 오렌지
   excl: "#D63B2F",       // 빼고 (빨강)
   incl: "#2E9E5B",       // 넣고 (초록)
@@ -266,7 +266,7 @@ export default function IngredientSearchApp() {
             <span style={{ position: "absolute", left: 16, top: "50%", transform: "translateY(-50%)",
               fontSize: 19, color: C.sub, pointerEvents: "none" }}>🔍</span>
             <input value={productQuery} onChange={(e) => setProductQuery(e.target.value)}
-              placeholder="상품명이나 성분으로 검색"
+              placeholder="상품명, 성분, 브랜드로 검색"
               style={{ width: "100%", boxSizing: "border-box", padding: "16px 44px 16px 46px",
                 borderRadius: 14, border: "1.5px solid " + C.line, background: C.bg, fontSize: 16.5,
                 fontWeight: 500, outline: "none", color: C.ink }} />
@@ -284,7 +284,7 @@ export default function IngredientSearchApp() {
         <div style={{ padding: "16px 20px 8px" }}>
           {/* 제외 (히어로) */}
           <FilterRow title="🚫 이 성분은 빼고 검색" empty="예: 우유, 계란, 밀가루, 새우"
-            chips={exclude} color={C.excl} onAdd={() => { setPickerOpen("exclude"); setQuery(""); }}
+            chips={exclude} color={C.sage} onAdd={() => { setPickerOpen("exclude"); setQuery(""); }}
             onRemove={(n) => removeChip("exclude", n)} />
 
           {/* 상세 필터 (접이식) — 넣고 · 식단/알러지 토글 */}
