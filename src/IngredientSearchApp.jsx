@@ -188,8 +188,14 @@ function parseIng(raw) {
   return { main: cleanName(raw), subs: [] };
 }
 // 제품의 모든 성분명(대표 + 세부, 정리본)
+// 원산지 괄호 제거 — 빼고/넣고 검색용 깔끔한 원료명 (상세 전성분에는 원산지 유지)
+const ORIGIN_RE = /국산|국내산|국내|외국산|외국|수입|미국|중국|칠레|페루|이탈리아|스페인|태국|캐나다|호주|프랑스|체코|이스라엘|튀르키예|터키|오스트리아|말레이시아|뉴질랜드|베트남|인도네시아|필리핀|일본/;
+function stripOrigin(name) {
+  return name.replace(/\s*\([^)]*\)/g, (m) => ORIGIN_RE.test(m) ? "" : m).replace(/\s+/g, " ").trim();
+}
 function ingNames(p) {
-  return p.ing.flatMap(([n]) => { const { main, subs } = parseIng(n); return [main, ...subs]; });
+  return p.ing.flatMap(([n]) => { const { main, subs } = parseIng(n); return [main, ...subs]; })
+    .map(stripOrigin).filter(Boolean);
 }
 
 const ALL_INGREDIENTS = Array.from(
