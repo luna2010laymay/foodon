@@ -24,13 +24,15 @@ const C = {
   tagAllergyBg: "#F3E9DA", tagAllergyTx: "#8A6A3A",   // 알러지 표시대상
   tagAnimalBg: "#E9E5F0", tagAnimalTx: "#5E5478",      // 동물성 유래
   tagAddBg: "#E7EDF1",   tagAddTx: "#4A6373",          // 식품첨가물
+  tagCompBg: "#EAE4D7",  tagCompTx: "#7A6A50",          // 복합성분
 };
 
 // ---- 성분 정보 라벨 정의 (사실 분류, 판정 아님) ----
 const LABELS = {
-  allergy: { key: "allergy", text: "알러지 표시대상", bg: C.tagAllergyBg, tx: C.tagAllergyTx, note: "식약처 알레르기 유발물질 표시대상 원료" },
-  animal:  { key: "animal",  text: "동물성 유래",     bg: C.tagAnimalBg,  tx: C.tagAnimalTx,  note: "동물에서 유래한 원료 (채식 판단 참고)" },
-  additive:{ key: "additive",text: "식품첨가물",       bg: C.tagAddBg,     tx: C.tagAddTx,     note: "보존·향미 등을 위한 식품첨가물" },
+  allergy: { key: "allergy", text: "알러지 표시대상", bg: C.tagAllergyBg, tx: C.tagAllergyTx, note: "식약처가 정한 알레르기 유발물질 표시대상 원료예요." },
+  animal:  { key: "animal",  text: "동물성 유래",     bg: C.tagAnimalBg,  tx: C.tagAnimalTx,  note: "동물에서 얻은 원료예요. 채식 여부를 판단할 때 참고하세요." },
+  additive:{ key: "additive",text: "식품첨가물",       bg: C.tagAddBg,     tx: C.tagAddTx,     note: "보존·향미 등을 위해 넣는 식품첨가물이에요." },
+  composite:{ key: "composite",text: "복합성분",        bg: C.tagCompBg,    tx: C.tagCompTx,    note: "여러 원료가 섞인 복합원료예요. 정확한 포함 성분명이 표기되지 않을 수 있어요." },
 };
 
 // ---- 샘플 제품 데이터 (실데이터 아님 / 데모용) ----
@@ -249,6 +251,13 @@ function ingNames(p) {
     return [main, ...subs].flatMap(searchTerms);
   }).filter(Boolean);
 }
+// 복합원료 여부 — 대괄호 세부성분이 있거나, 원산지 제거 후 괄호 안에 여러 원료가 든 경우
+function isComposite(raw) {
+  const { main, subs } = parseIng(raw);
+  if (subs.length) return true;
+  const m = stripOrigin(main).match(/\(([^)]*)\)/);
+  return !!(m && /[·,]|등/.test(m[1]));
+}
 
 const ALL_INGREDIENTS = Array.from(
   new Set(PRODUCTS.flatMap((p) => ingNames(p)))
@@ -452,7 +461,7 @@ export default function IngredientSearchApp() {
             </div>
           )}
           {results.map((p) => {
-            const labelSet = Array.from(new Set(p.ing.flatMap(([, ls]) => ls)));
+            const labelSet = Array.from(new Set([...p.ing.flatMap(([, ls]) => ls), ...(p.ing.some(([n]) => isComposite(n)) ? ["composite"] : [])]));
             return (
               <button key={p.id} onClick={() => setDetail(p)}
                 style={{ width: "100%", textAlign: "left", background: C.card, border: "1px solid " + C.line,
@@ -533,17 +542,19 @@ export default function IngredientSearchApp() {
                 const tx = primary ? primary.tx : C.sage;
                 const bg = primary ? primary.bg : C.sageSoft;
                 const { main, subs } = parseIng(n);
+                const comp = isComposite(n);
+                const sheetLabels = comp ? [...ls, "composite"] : ls;
                 return (
                   <span key={i} style={{ display: "inline-flex", alignItems: "center", flexWrap: "wrap", gap: 4 }}>
-                    <button onClick={() => setIngDetail({ name: main, labels: ls })}
-                      title={primary ? primary.note : ""}
+                    <button onClick={() => setIngDetail({ name: main, search: searchTerms(main)[0] || main, labels: sheetLabels })}
+                      title={comp ? LABELS.composite.note : (primary ? primary.note : "")}
                       style={{ fontSize: 13, fontWeight: 600, color: tx, background: bg,
                         padding: "5px 11px", borderRadius: 999, lineHeight: 1.5, border: "none",
                         cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 3 }}>
-                      #{main}<span style={{ fontSize: 11, opacity: 0.6 }}>›</span>
+                      <span style={comp ? { textDecoration: "underline dashed", textUnderlineOffset: "3px", textDecorationThickness: "1.5px" } : undefined}>#{main}</span><span style={{ fontSize: 11, opacity: 0.6 }}>›</span>
                     </button>
                     {subs.map((s, j) => (
-                      <button key={j} onClick={() => setIngDetail({ name: s, labels: [] })}
+                      <button key={j} onClick={() => setIngDetail({ name: s, search: searchTerms(s)[0] || s, labels: [] })}
                         title="세부 구성 성분"
                         style={{ fontSize: 10.5, fontWeight: 600, color: C.sub, background: C.bg,
                           border: "1px solid " + C.line, padding: "2px 8px", borderRadius: 999,
@@ -556,7 +567,7 @@ export default function IngredientSearchApp() {
               })}
             </div>
             <div style={{ fontSize: 10.5, color: C.sub, marginBottom: 6 }}>
-              성분을 누르면 상세 설명을 볼 수 있어요. 색이 있는 태그는 알러지·동물성·첨가물 표시 성분이에요.
+              성분을 누르면 상세 설명을 볼 수 있어요. 색 태그는 알러지·동물성·첨가물, 밑줄 그어진 성분은 복합성분이에요.
             </div>
 
 
@@ -671,10 +682,10 @@ export default function IngredientSearchApp() {
             <div style={{ marginTop: 6, padding: "12px 14px", background: C.sageSoft,
               borderRadius: 12, fontSize: 12.5, color: C.ink }}>
               이 성분이 들어간 제품{" "}
-              <b>{PRODUCTS.filter((p) => ingNames(p).includes(ingDetail.name)).length}개</b>
+              <b>{PRODUCTS.filter((p) => ingNames(p).includes(ingDetail.search)).length}개</b>
             </div>
 
-            <button onClick={() => { addChip("include", ingDetail.name); setIngDetail(null); setDetail(null); }}
+            <button onClick={() => { addChip("include", ingDetail.search); setIngDetail(null); setDetail(null); }}
               style={{ width: "100%", marginTop: 12, padding: "13px", borderRadius: 12, border: "none",
                 background: C.incl, color: "#fff", fontSize: 14, fontWeight: 700, cursor: "pointer" }}>
               ＋ 이 성분 넣고 검색하기
