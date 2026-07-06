@@ -193,9 +193,27 @@ const ORIGIN_RE = /국산|국내산|국내|외국산|외국|수입|미국|중국
 function stripOrigin(name) {
   return name.replace(/\s*\([^)]*\)/g, (m) => ORIGIN_RE.test(m) ? "" : m).replace(/\s+/g, " ").trim();
 }
+// 검색용 원료명 확장/치환 (괄호 앞 대표명 기준) — 상세 전성분에는 원문 그대로 표시됨
+const SEARCH_MAP = {
+  "복합조미식품": ["복합조미식품", "설탕", "유장분", "분리대두단백", "난백분말"],
+  "가공유지": ["가공유지", "팜올레인유"],
+  "합성향료": ["합성향료", "바닐라"],
+  "별사탕": ["설탕"],
+  "프로테아제": ["프로테아제"],  // 유래(세균성)는 검색에서 숨김
+  "d-토코페롤": ["d-토코페롤"],   // 형태(혼합형)는 검색에서 숨김
+};
+function searchTerms(name) {
+  const stripped = stripOrigin(name);
+  const base = stripped.replace(/\(.*$/, "").trim();  // 괄호 앞 대표명
+  if (SEARCH_MAP[base]) return SEARCH_MAP[base];
+  return [stripped.includes("(") ? base : stripped];   // 그 외 괄호는 대표명만
+}
+// 제품의 검색용 원료명 집합 (picker 노출 + 빼기/넣기 매칭)
 function ingNames(p) {
-  return p.ing.flatMap(([n]) => { const { main, subs } = parseIng(n); return [main, ...subs]; })
-    .map(stripOrigin).filter(Boolean);
+  return p.ing.flatMap(([n]) => {
+    const { main, subs } = parseIng(n);
+    return [main, ...subs].flatMap(searchTerms);
+  }).filter(Boolean);
 }
 
 const ALL_INGREDIENTS = Array.from(
