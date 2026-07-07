@@ -348,6 +348,8 @@ export default function IngredientSearchApp() {
   // 상세 필터에서 현재 켜져 있는 개수 (접혀 있어도 배지로 표시)
   const advToggleCount = [veganOnly, allergyFree, additiveFree, glutenFree, sugarFree, simpleOnly].filter(Boolean).length;
   const advCount = advToggleCount + include.length;
+  // 검색어·필터가 하나라도 있을 때만 결과 노출 (첫 화면엔 결과 숨김)
+  const searched = productQuery.trim() !== "" || exclude.length > 0 || advCount > 0;
 
   return (
     <div style={{ display: "flex", justifyContent: "center", background: "#FFFFFF",
@@ -460,20 +462,33 @@ export default function IngredientSearchApp() {
         </div>
 
         {/* 결과 헤더 */}
+        {searched && (
         <div style={{ padding: "10px 20px", display: "flex", alignItems: "baseline",
           justifyContent: "space-between", borderTop: "1px solid " + C.line, marginTop: 8 }}>
           <div style={{ fontSize: 14, fontWeight: 700 }}>검색 결과</div>
           <div style={{ fontSize: 12, color: C.sub }}>{results.length}개 제품</div>
         </div>
+        )}
 
         {/* 결과 리스트 */}
         <div style={{ padding: "0 20px 28px" }}>
-          {results.length === 0 && (
+          {!searched && (
+            <div style={{ marginTop: 16, border: "1.5px dashed #C7D3CB", borderRadius: 16, background: "#FBFCFB",
+              padding: "38px 20px 40px", textAlign: "center" }}>
+              <div style={{ fontSize: 16, fontWeight: 800, color: C.sage, letterSpacing: "-0.02em", lineHeight: 1.5 }}>
+                내게 맞는 먹거리를 더 쉽게
+              </div>
+              <div style={{ fontSize: 16, fontWeight: 700, color: C.ink, marginTop: 8, lineHeight: 1.5 }}>
+                위에서 찾으면 여기에 결과가 보여요
+              </div>
+            </div>
+          )}
+          {searched && results.length === 0 && (
             <div style={{ padding: "30px 8px", textAlign: "center", color: C.sub, fontSize: 13 }}>
               조건에 맞는 제품이 없어요.<br />빼는 성분을 줄이거나 넣는 성분을 바꿔보세요.
             </div>
           )}
-          {results.map((p) => {
+          {searched && results.map((p) => {
             const labelSet = Array.from(new Set([...allIng(p).flatMap(([, ls]) => ls), ...(allIng(p).some(([n]) => isComposite(n)) ? ["composite"] : [])]));
             return (
               <button key={p.id} onClick={() => setDetail(p)}
