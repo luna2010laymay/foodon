@@ -10,4 +10,4 @@ body {
 }
 
 /* PC(온라인) 큰 화면에서만 비율 그대로 확대 — 배열(줄바꿈)은 폰과 100% 동일, 실제 폰은 그대로 */
-@media (min-width: 768px) { #root { zoom: 1.15; } }
+@media (min-width: 768px) { #root { zoom: 1.25; } }
