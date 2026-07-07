@@ -190,14 +190,16 @@ const PRODUCTS = [
       ["칼슘","27 mg","4%"],["철분","0.47 mg","4%"]] },
     reviews: [] },
   { id: 26, name: "찰곤약떡볶이", brand: "풀무원", cat: "떡류", emoji: "🌶️", img: IMG.tteok,
-    ing: [["쌀가루(쌀:외국산)",[]],["밀가루(밀:호주산)",["allergy"]],["혼합제제(변성전분·덱스트린)",["additive"]],
-      ["난소화성말토덱스트린(옥수수:외국산)",["additive"]],["구아검",["additive"]],["곤약분말(중국산)",[]],
-      ["혼합제제(젖산·초산·이소말토올리고당·구연산·영양강화제)",["additive"]],["잔탄검",["additive"]],["정제소금",[]],["주정",["additive"]],["미강유혼합액",[]],
-      ["고추장(물엿·소맥분·고추양념·정제소금)",["allergy"]],["정제수",[]],["양파(국산)",[]],["설탕",[]],["기타과당",[]],
-      ["옥수수기름(옥수수:외국산)",[]],["양조간장",["allergy"]],["물엿",[]],["마늘",[]],["아미노베이스PS",[]],
-      ["다시마엑기스3호",[]],["파인애플농축액",[]],["볶음참깨",[]],["5'-리보뉴클레오티드이나트륨",["additive"]],
-      ["사과농축액",[]],["밀분해추출물",["allergy"]],["파프리카추출색소",["additive"]],["흑후추분말",[]],
-      ["건파(중국산)",[]],["건양배추(중국산)",[]],["혼합제제(탄산칼륨·탄산나트륨·치자황색소)",["additive"]]],
+    ingGroups: [
+      { name: "찰곤약떡볶이떡", ing: [["쌀가루(쌀:외국산)",[]],["밀가루(밀:호주산)",["allergy"]],["혼합제제(변성전분·덱스트린)",["additive"]],
+        ["난소화성말토덱스트린(옥수수:외국산)",["additive"]],["구아검",["additive"]],["곤약분말(중국산)",[]],
+        ["혼합제제(젖산·초산·이소말토올리고당·구연산·영양강화제)",["additive"]],["잔탄검",["additive"]],["정제소금",[]],["주정",["additive"]],["미강유혼합액",[]]] },
+      { name: "곤약떡볶이용소스", ing: [["고추장(물엿·소맥분·고추양념·정제소금)",["allergy"]],["정제수",[]],["양파(국산)",[]],["설탕",[]],["기타과당",[]],
+        ["옥수수기름(옥수수:외국산)",[]],["양조간장",["allergy"]],["물엿",[]],["마늘",[]],["아미노베이스PS",[]],
+        ["다시마엑기스3호",[]],["파인애플농축액",[]],["볶음참깨",[]],["5\'-리보뉴클레오티드이나트륨",["additive"]],
+        ["사과농축액",[]],["밀분해추출물",["allergy"]],["파프리카추출색소",["additive"]],["흑후추분말",[]]] },
+      { name: "양배추·파건더기", ing: [["건파(중국산)",[]],["건양배추(중국산)",[]],["혼합제제(탄산칼륨·탄산나트륨·치자황색소)",["additive"]]] },
+    ],
     contains: ["밀","대두"],
     facility: ["게","새우","고등어","계란","땅콩","우유","메밀","돼지고기","쇠고기","복숭아","토마토","호두","닭고기","오징어","조개류","아황산류","잣"],
     nutrition: { serving: "100 g", kcal: 200, rows: [
@@ -217,11 +219,18 @@ function cleanName(s) {
   t = t.replace(/ (\d+) /g, (_, i) => parens[+i]);    // 괄호(원산지) 복원
   return t.replace(/\(\s*\)/g, "").replace(/\s+\(/g, "(").replace(/\s+/g, " ").trim();
 }
-// 성분 파싱: 대괄호[...] 복합성분은 대표명 + 세부성분으로 분리
+// 성분 파싱: 대괄호[...] 또는 복합 괄호(여러 원료)를 대표명 + 세부성분으로 분리
+// (원산지 괄호·단일 유래/형태 괄호는 분리하지 않음)
 function parseIng(raw) {
   const m = String(raw).match(/^([^\[]+)\[(.*)\]\s*$/);
   if (m) return { main: cleanName(m[1]), subs: m[2].split(",").map(cleanName).filter(Boolean) };
-  return { main: cleanName(raw), subs: [] };
+  const full = cleanName(raw);
+  const pm = full.match(/^(.+)\(([^()]*)\)$/);
+  if (pm && !ORIGIN_RE.test(pm[2]) && /[·,]|등/.test(pm[2])) {
+    const subs = pm[2].split(/[·,]/).map((x) => x.replace(/\s*등\s*$/, "").trim()).filter(Boolean);
+    return { main: pm[1].trim(), subs };
+  }
+  return { main: full, subs: [] };
 }
 // 제품의 모든 성분명(대표 + 세부, 정리본)
 // 원산지 괄호 제거 — 빼고/넣고 검색용 깔끔한 원료명 (상세 전성분에는 원산지 유지)
@@ -246,7 +255,7 @@ function searchTerms(name) {
 }
 // 제품의 검색용 원료명 집합 (picker 노출 + 빼기/넣기 매칭)
 function ingNames(p) {
-  return p.ing.flatMap(([n]) => {
+  return allIng(p).flatMap(([n]) => {
     const { main, subs } = parseIng(n);
     return [main, ...subs].flatMap(searchTerms);
   }).filter(Boolean);
@@ -257,6 +266,10 @@ function isComposite(raw) {
   if (subs.length) return true;
   const m = stripOrigin(main).match(/\(([^)]*)\)/);
   return !!(m && /[·,]|등/.test(m[1]));
+}
+// 그룹(면·스프, 떡·소스 등) 또는 단일 리스트를 평탄화한 전체 성분
+function allIng(p) {
+  return p.ingGroups ? p.ingGroups.flatMap((g) => g.ing) : (p.ing || []);
 }
 
 const ALL_INGREDIENTS = Array.from(
@@ -300,12 +313,12 @@ export default function IngredientSearchApp() {
       const hasSugar = names.some((n) => /설탕|물엿|원당|시럽/.test(n));
       const okExclude = exclude.every((ex) => !names.includes(ex));
       const okInclude = include.every((inc) => names.includes(inc));
-      const okVegan = !veganOnly || p.ing.every(([, ls]) => !ls.includes("animal"));
-      const okAllergy = !allergyFree || (!(p.contains && p.contains.length) && p.ing.every(([, ls]) => !ls.includes("allergy")));
-      const okAdditive = !additiveFree || p.ing.every(([, ls]) => !ls.includes("additive"));
+      const okVegan = !veganOnly || allIng(p).every(([, ls]) => !ls.includes("animal"));
+      const okAllergy = !allergyFree || (!(p.contains && p.contains.length) && allIng(p).every(([, ls]) => !ls.includes("allergy")));
+      const okAdditive = !additiveFree || allIng(p).every(([, ls]) => !ls.includes("additive"));
       const okGluten = !glutenFree || !hasGluten;
       const okSugar = !sugarFree || !hasSugar;
-      const okSimple = !simpleOnly || p.ing.length <= 5;
+      const okSimple = !simpleOnly || allIng(p).length <= 5;
       const okName = q === "" ||
         p.name.toLowerCase().includes(q) ||
         p.brand.toLowerCase().includes(q) ||
@@ -461,7 +474,7 @@ export default function IngredientSearchApp() {
             </div>
           )}
           {results.map((p) => {
-            const labelSet = Array.from(new Set([...p.ing.flatMap(([, ls]) => ls), ...(p.ing.some(([n]) => isComposite(n)) ? ["composite"] : [])]));
+            const labelSet = Array.from(new Set([...allIng(p).flatMap(([, ls]) => ls), ...(allIng(p).some(([n]) => isComposite(n)) ? ["composite"] : [])]));
             return (
               <button key={p.id} onClick={() => setDetail(p)}
                 style={{ width: "100%", textAlign: "left", background: C.card, border: "1px solid " + C.line,
@@ -534,38 +547,16 @@ export default function IngredientSearchApp() {
             </div>
 
             <SectionTitle>전성분</SectionTitle>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 7, marginBottom: 4 }}>
-              {detail.ing.map(([n, ls], i) => {
-                const primary = ls.includes("allergy") ? LABELS.allergy
-                  : ls.includes("animal") ? LABELS.animal
-                  : ls.includes("additive") ? LABELS.additive : null;
-                const tx = primary ? primary.tx : C.sage;
-                const bg = primary ? primary.bg : C.sageSoft;
-                const { main, subs } = parseIng(n);
-                const comp = isComposite(n);
-                const sheetLabels = comp ? [...ls, "composite"] : ls;
-                return (
-                  <span key={i} style={{ display: "inline-flex", alignItems: "center", flexWrap: "wrap", gap: 4 }}>
-                    <button onClick={() => setIngDetail({ name: main, search: searchTerms(main)[0] || main, labels: sheetLabels })}
-                      title={comp ? LABELS.composite.note : (primary ? primary.note : "")}
-                      style={{ fontSize: 13, fontWeight: 600, color: tx, background: bg,
-                        padding: "5px 11px", borderRadius: 999, lineHeight: 1.5, border: "none",
-                        cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 3 }}>
-                      <span style={comp ? { textDecoration: "underline dashed", textUnderlineOffset: "3px", textDecorationThickness: "1.5px" } : undefined}>#{main}</span><span style={{ fontSize: 11, opacity: 0.6 }}>›</span>
-                    </button>
-                    {subs.map((s, j) => (
-                      <button key={j} onClick={() => setIngDetail({ name: s, search: searchTerms(s)[0] || s, labels: [] })}
-                        title="세부 구성 성분"
-                        style={{ fontSize: 10.5, fontWeight: 600, color: C.sub, background: C.bg,
-                          border: "1px solid " + C.line, padding: "2px 8px", borderRadius: 999,
-                          lineHeight: 1.5, cursor: "pointer" }}>
-                        #{s}
-                      </button>
-                    ))}
-                  </span>
-                );
-              })}
-            </div>
+            {allIng(detail).length === 0
+              ? <div style={{ fontSize: 12, color: C.sub }}>전성분 정보가 없어요.</div>
+              : detail.ingGroups
+                ? detail.ingGroups.map((g, gi) => (
+                    <div key={gi} style={{ marginBottom: 8 }}>
+                      <div style={{ fontSize: 12, fontWeight: 800, color: C.sage, margin: "2px 0 5px" }}>{g.name}</div>
+                      <IngTags list={g.ing} onPick={setIngDetail} />
+                    </div>
+                  ))
+                : <IngTags list={detail.ing} onPick={setIngDetail} />}
             <div style={{ fontSize: 10.5, color: C.sub, marginBottom: 6 }}>
               성분을 누르면 상세 설명을 볼 수 있어요. 색 태그는 알러지·동물성·첨가물, 밑줄 그어진 성분은 복합성분이에요.
             </div>
@@ -693,6 +684,43 @@ export default function IngredientSearchApp() {
           </Sheet>
         )}
       </div>
+    </div>
+  );
+}
+
+function IngTags({ list, onPick }) {
+  return (
+    <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 6, marginBottom: 4 }}>
+      {list.map(([n, ls], i) => {
+        const primary = ls.includes("allergy") ? LABELS.allergy
+          : ls.includes("animal") ? LABELS.animal
+          : ls.includes("additive") ? LABELS.additive : null;
+        const tx = primary ? primary.tx : C.sage;
+        const bg = primary ? primary.bg : C.sageSoft;
+        const { main, subs } = parseIng(n);
+        const comp = isComposite(n);
+        const sheetLabels = comp ? [...ls, "composite"] : ls;
+        return (
+          <span key={i} style={{ display: "contents" }}>
+            <button onClick={() => onPick({ name: main, search: searchTerms(main)[0] || main, labels: sheetLabels })}
+              title={comp ? LABELS.composite.note : (primary ? primary.note : "")}
+              style={{ fontSize: 13, fontWeight: 600, color: tx, background: bg,
+                padding: "5px 11px", borderRadius: 999, lineHeight: 1.5, border: "none",
+                cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 3 }}>
+              <span style={comp ? { textDecoration: "underline dashed", textUnderlineOffset: "3px", textDecorationThickness: "1.5px" } : undefined}>#{main}</span><span style={{ fontSize: 11, opacity: 0.6 }}>›</span>
+            </button>
+            {subs.map((s, j) => (
+              <button key={j} onClick={() => onPick({ name: s, search: searchTerms(s)[0] || s, labels: [] })}
+                title="세부 구성 성분"
+                style={{ fontSize: 10.5, fontWeight: 600, color: C.sub, background: C.bg,
+                  border: "1px solid " + C.line, padding: "2px 8px", borderRadius: 999,
+                  lineHeight: 1.5, cursor: "pointer" }}>
+                #{s}
+              </button>
+            ))}
+          </span>
+        );
+      })}
     </div>
   );
 }
