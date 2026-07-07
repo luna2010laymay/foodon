@@ -120,10 +120,11 @@ export default function Onboarding() {
   const p = PAGES[page];
 
   return (
-    <div style={{ position: "fixed", inset: 0, zIndex: 9999, background: "#fff",
-      display: "flex", justifyContent: "center", fontFamily: "'Pretendard', -apple-system, sans-serif" }}>
-      <div style={{ width: "100%", maxWidth: 460, height: "100%", display: "flex", flexDirection: "column",
-        padding: "max(44px, env(safe-area-inset-top)) 0 0" }}>
+    <div style={{ position: "fixed", inset: 0, zIndex: 9999, overflow: "auto", background: "#FFFFFF",
+      display: "flex", justifyContent: "center", padding: "24px 12px", fontFamily: "'Pretendard', -apple-system, sans-serif" }}>
+      <div style={{ width: 390, maxWidth: "100%", minHeight: 760, background: "#fff", borderRadius: 28,
+        overflow: "hidden", border: "1px solid #E5E2D9", boxShadow: "0 18px 50px rgba(35,41,31,.18)",
+        display: "flex", flexDirection: "column", padding: "30px 0 0" }}>
         {/* skip */}
         <div style={{ display: "flex", justifyContent: "flex-end", padding: "0 26px" }}>
           <button onClick={finish} style={{ border: "none", background: "transparent", fontSize: 15,
