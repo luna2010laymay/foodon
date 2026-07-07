@@ -690,7 +690,7 @@ export default function IngredientSearchApp() {
 
 function IngTags({ list, onPick }) {
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: 7, marginBottom: 4 }}>
+    <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 6, marginBottom: 4 }}>
       {list.map(([n, ls], i) => {
         const primary = ls.includes("allergy") ? LABELS.allergy
           : ls.includes("animal") ? LABELS.animal
@@ -701,7 +701,7 @@ function IngTags({ list, onPick }) {
         const comp = isComposite(n);
         const sheetLabels = comp ? [...ls, "composite"] : ls;
         return (
-          <span key={i} style={{ display: "inline-flex", alignItems: "center", flexWrap: "wrap", gap: 4 }}>
+          <span key={i} style={{ display: "contents" }}>
             <button onClick={() => onPick({ name: main, search: searchTerms(main)[0] || main, labels: sheetLabels })}
               title={comp ? LABELS.composite.note : (primary ? primary.note : "")}
               style={{ fontSize: 13, fontWeight: 600, color: tx, background: bg,
