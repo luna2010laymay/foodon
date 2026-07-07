@@ -280,6 +280,8 @@ const ALLERGEN_SYNONYMS = {
   "땅콩": ["땅콩", "낙화생"],
   "대두": ["대두", "콩", "두류"],
 };
+// 인기 검색어 별칭 — 두유 검색 시 콩물 상품도 노출
+const SEARCH_ALIAS = { "두유": ["두유", "콩물", "콩즙"] };
 // 성분(또는 알레르기 분류) ex 를 뺄 때 제품 p가 제외 대상인지 — 전성분 + 함유(contains) 기준
 function excludesProduct(p, ex) {
   if (ingNames(p).includes(ex)) return true;
@@ -339,10 +341,11 @@ export default function IngredientSearchApp() {
       const okSugar = !sugarFree || !hasSugar;
       const okSimple = !simpleOnly || allIng(p).length <= 5;
       const okName = q === "" ||
-        p.name.toLowerCase().includes(q) ||
-        p.brand.toLowerCase().includes(q) ||
-        p.cat.toLowerCase().includes(q) ||
-        names.some((n) => n.toLowerCase().includes(q));
+        (SEARCH_ALIAS[q] || [q]).some((qq) =>
+          p.name.toLowerCase().includes(qq) ||
+          p.brand.toLowerCase().includes(qq) ||
+          p.cat.toLowerCase().includes(qq) ||
+          names.some((n) => n.toLowerCase().includes(qq)));
       return okExclude && okInclude && okVegan && okAllergy && okAdditive && okGluten && okSugar && okSimple && okName;
     });
   }, [exclude, include, productQuery, veganOnly, allergyFree, additiveFree, glutenFree, sugarFree, simpleOnly]);
@@ -493,21 +496,29 @@ export default function IngredientSearchApp() {
         <div style={{ padding: "0 20px 28px" }}>
           {!searched && (
             <div style={{ marginTop: 18 }}>
-              <div style={{ fontSize: 14, fontWeight: 800, color: C.ink }}>🔥 이런 성분, 많이 빼요</div>
-              <div style={{ fontSize: 11.5, color: C.sub, marginTop: 3, marginBottom: 13 }}>칩을 누르면 그 성분을 뺀 결과가 바로 나와요.</div>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-                {["계란", "우유", "밀", "갑각류", "땅콩", "대두"].map((n) => (
-                  <button key={n} onClick={() => addChip("exclude", n)}
-                    style={{ fontSize: 13.5, fontWeight: 700, padding: "8px 14px", borderRadius: 999,
-                      border: "1.5px solid " + C.sage, background: "#fff", color: C.sage, cursor: "pointer",
-                      display: "inline-flex", alignItems: "center", gap: 5, fontFamily: "inherit" }}>
-                    <span style={{ fontWeight: 800 }}>✕</span>{n}
+              <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                <span style={{ fontSize: 14.5, fontWeight: 800, color: C.ink }}>🔥 인기 검색어</span>
+                <span style={{ fontSize: 11, color: C.sub, fontWeight: 600 }}>지금 많이 찾는</span>
+              </div>
+              <div style={{ marginTop: 6 }}>
+                {[
+                  { w: "떡볶이", run: () => setProductQuery("떡볶이") },
+                  { w: "채식", run: () => { setVeganOnly(true); setShowMore(true); } },
+                  { w: "두유", run: () => setProductQuery("두유") },
+                  { w: "과자", run: () => setProductQuery("과자") },
+                  { w: "고구마", run: () => setProductQuery("고구마") },
+                  { w: "무첨가", run: () => { setAdditiveFree(true); setShowMore(true); } },
+                ].map(({ w, run }, i) => (
+                  <button key={w} onClick={run}
+                    style={{ width: "100%", display: "flex", alignItems: "center", gap: 13, padding: "12px 2px",
+                      border: "none", borderBottom: "1px solid #F1F0EC", background: "none",
+                      cursor: "pointer", textAlign: "left", fontFamily: "inherit", outline: "none",
+                      WebkitTapHighlightColor: "transparent" }}>
+                    <span style={{ width: 20, fontSize: 15, fontWeight: 900, textAlign: "center", flexShrink: 0,
+                      color: i < 3 ? C.sage : "#B8BCB2" }}>{i + 1}</span>
+                    <span style={{ fontSize: 14.5, fontWeight: 700, color: C.ink }}>{w}</span>
                   </button>
                 ))}
-              </div>
-              <div style={{ marginTop: 24, borderTop: "1px dashed " + C.line, paddingTop: 18, textAlign: "center" }}>
-                <div style={{ fontSize: 14.5, fontWeight: 800, color: C.sage, letterSpacing: "-0.02em" }}>내게 맞는 먹거리를 더 쉽게</div>
-                <div style={{ fontSize: 12.5, color: C.sub, marginTop: 5 }}>위에서 찾거나 성분을 골라보세요</div>
               </div>
             </div>
           )}
