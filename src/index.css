@@ -8,3 +8,7 @@ body {
     "Malgun Gothic", "Noto Sans KR", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
+
+/* PC(온라인) 큰 화면에서만 비율 그대로 확대 — 실제 폰(작은 화면)은 그대로 */
+@media (min-width: 768px)  { #root { zoom: 1.25; } }
+@media (min-width: 1280px) { #root { zoom: 1.4; } }
