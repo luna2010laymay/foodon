@@ -271,6 +271,25 @@ function isComposite(raw) {
 function allIng(p) {
   return p.ingGroups ? p.ingGroups.flatMap((g) => g.ing) : (p.ing || []);
 }
+// 알레르기 분류명 → 실제 데이터 표기(전성분·함유) 매칭 동의어
+const ALLERGEN_SYNONYMS = {
+  "계란": ["계란", "달걀", "알류", "난백", "난황", "전란", "난분"],
+  "우유": ["우유", "유청", "유장", "분유", "치즈", "버터", "연유", "유크림", "카제인"],
+  "밀": ["밀", "소맥", "글루텐"],
+  "갑각류": ["갑각류", "게", "새우", "랍스터", "가재", "크릴"],
+  "땅콩": ["땅콩", "낙화생"],
+  "대두": ["대두", "콩", "두류"],
+};
+// 성분(또는 알레르기 분류) ex 를 뺄 때 제품 p가 제외 대상인지 — 전성분 + 함유(contains) 기준
+function excludesProduct(p, ex) {
+  if (ingNames(p).includes(ex)) return true;
+  const syns = ALLERGEN_SYNONYMS[ex];
+  if (syns) {
+    const hay = [...(p.contains || []), ...allIng(p).map(([n]) => n)].join(" ");
+    return syns.some((sy) => hay.includes(sy));
+  }
+  return false;
+}
 
 const ALL_INGREDIENTS = Array.from(
   new Set(PRODUCTS.flatMap((p) => ingNames(p)))
@@ -311,7 +330,7 @@ export default function IngredientSearchApp() {
       const names = ingNames(p);
       const hasGluten = names.some((n) => /밀|보리|호밀|맥아/.test(n)) || (p.contains && p.contains.includes("밀"));
       const hasSugar = names.some((n) => /설탕|물엿|원당|시럽/.test(n));
-      const okExclude = exclude.every((ex) => !names.includes(ex));
+      const okExclude = exclude.every((ex) => !excludesProduct(p, ex));
       const okInclude = include.every((inc) => names.includes(inc));
       const okVegan = !veganOnly || allIng(p).every(([, ls]) => !ls.includes("animal"));
       const okAllergy = !allergyFree || (!(p.contains && p.contains.length) && allIng(p).every(([, ls]) => !ls.includes("allergy")));
@@ -348,6 +367,8 @@ export default function IngredientSearchApp() {
   // 상세 필터에서 현재 켜져 있는 개수 (접혀 있어도 배지로 표시)
   const advToggleCount = [veganOnly, allergyFree, additiveFree, glutenFree, sugarFree, simpleOnly].filter(Boolean).length;
   const advCount = advToggleCount + include.length;
+  // 검색어·필터가 하나라도 있을 때만 결과 노출 (첫 화면엔 결과 숨김)
+  const searched = productQuery.trim() !== "" || exclude.length > 0 || advCount > 0;
 
   return (
     <div style={{ display: "flex", justifyContent: "center", background: "#FFFFFF",
@@ -460,20 +481,42 @@ export default function IngredientSearchApp() {
         </div>
 
         {/* 결과 헤더 */}
+        {searched && (
         <div style={{ padding: "10px 20px", display: "flex", alignItems: "baseline",
           justifyContent: "space-between", borderTop: "1px solid " + C.line, marginTop: 8 }}>
           <div style={{ fontSize: 14, fontWeight: 700 }}>검색 결과</div>
           <div style={{ fontSize: 12, color: C.sub }}>{results.length}개 제품</div>
         </div>
+        )}
 
         {/* 결과 리스트 */}
         <div style={{ padding: "0 20px 28px" }}>
-          {results.length === 0 && (
+          {!searched && (
+            <div style={{ marginTop: 18 }}>
+              <div style={{ fontSize: 14, fontWeight: 800, color: C.ink }}>🔥 이런 성분, 많이 빼요</div>
+              <div style={{ fontSize: 11.5, color: C.sub, marginTop: 3, marginBottom: 13 }}>칩을 누르면 그 성분을 뺀 결과가 바로 나와요.</div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                {["계란", "우유", "밀", "갑각류", "땅콩", "대두"].map((n) => (
+                  <button key={n} onClick={() => addChip("exclude", n)}
+                    style={{ fontSize: 13.5, fontWeight: 700, padding: "8px 14px", borderRadius: 999,
+                      border: "1.5px solid " + C.sage, background: "#fff", color: C.sage, cursor: "pointer",
+                      display: "inline-flex", alignItems: "center", gap: 5, fontFamily: "inherit" }}>
+                    <span style={{ fontWeight: 800 }}>✕</span>{n}
+                  </button>
+                ))}
+              </div>
+              <div style={{ marginTop: 24, borderTop: "1px dashed " + C.line, paddingTop: 18, textAlign: "center" }}>
+                <div style={{ fontSize: 14.5, fontWeight: 800, color: C.sage, letterSpacing: "-0.02em" }}>내게 맞는 먹거리를 더 쉽게</div>
+                <div style={{ fontSize: 12.5, color: C.sub, marginTop: 5 }}>위에서 찾거나 성분을 골라보세요</div>
+              </div>
+            </div>
+          )}
+          {searched && results.length === 0 && (
             <div style={{ padding: "30px 8px", textAlign: "center", color: C.sub, fontSize: 13 }}>
               조건에 맞는 제품이 없어요.<br />빼는 성분을 줄이거나 넣는 성분을 바꿔보세요.
             </div>
           )}
-          {results.map((p) => {
+          {searched && results.map((p) => {
             const labelSet = Array.from(new Set([...allIng(p).flatMap(([, ls]) => ls), ...(allIng(p).some(([n]) => isComposite(n)) ? ["composite"] : [])]));
             return (
               <button key={p.id} onClick={() => setDetail(p)}
