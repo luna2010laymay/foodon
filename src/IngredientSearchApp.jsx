@@ -219,11 +219,18 @@ function cleanName(s) {
   t = t.replace(/ (\d+) /g, (_, i) => parens[+i]);    // 괄호(원산지) 복원
   return t.replace(/\(\s*\)/g, "").replace(/\s+\(/g, "(").replace(/\s+/g, " ").trim();
 }
-// 성분 파싱: 대괄호[...] 복합성분은 대표명 + 세부성분으로 분리
+// 성분 파싱: 대괄호[...] 또는 복합 괄호(여러 원료)를 대표명 + 세부성분으로 분리
+// (원산지 괄호·단일 유래/형태 괄호는 분리하지 않음)
 function parseIng(raw) {
   const m = String(raw).match(/^([^\[]+)\[(.*)\]\s*$/);
   if (m) return { main: cleanName(m[1]), subs: m[2].split(",").map(cleanName).filter(Boolean) };
-  return { main: cleanName(raw), subs: [] };
+  const full = cleanName(raw);
+  const pm = full.match(/^(.+)\(([^()]*)\)$/);
+  if (pm && !ORIGIN_RE.test(pm[2]) && /[·,]|등/.test(pm[2])) {
+    const subs = pm[2].split(/[·,]/).map((x) => x.replace(/\s*등\s*$/, "").trim()).filter(Boolean);
+    return { main: pm[1].trim(), subs };
+  }
+  return { main: full, subs: [] };
 }
 // 제품의 모든 성분명(대표 + 세부, 정리본)
 // 원산지 괄호 제거 — 빼고/넣고 검색용 깔끔한 원료명 (상세 전성분에는 원산지 유지)
