@@ -249,7 +249,7 @@ const PRODUCTS = [
 // 성분명 정리: 괄호(원산지)는 유지, 괄호 밖의 퍼센트·함량 수치만 제거
 function cleanName(s) {
   const parens = []; // 괄호(원산지) 보관 — 단, 내부 % 는 제거
-  let t = String(s).replace(/\([^)]*\)/g, (m) => { parens.push(m.replace(/\d+(?:\.\d+)?\s*%/g, "").replace(/\s*·\s*/g, "·").replace(/\(\s+/g, "(").replace(/\s+\)/g, ")")); return " " + (parens.length - 1) + " "; });
+  let t = String(s).replace(/\([^)]*\)/g, (m) => { parens.push(m.replace(/\d+(?:\.\d+)?\s*%/g, "").replace(/\s*·\s*/g, "·").replace(/\(\s+/g, "(").replace(/\s+\)/g, ")").replace(/외국산[^)]*\)/, "외국산)")); return " " + (parens.length - 1) + " "; });
   t = t.replace(/\d+(?:\.\d+)?\s*%/g, "");                      // 괄호 밖 퍼센트 제거
   t = t.replace(/ (\d+) /g, (_, i) => parens[+i]);    // 괄호(원산지) 복원
   return t.replace(/\(\s*\)/g, "").replace(/\s+\(/g, "(").replace(/\s+/g, " ").trim();
