@@ -703,26 +703,6 @@ export default function IngredientSearchApp() {
               </div>
             )}
 
-            {/* 구매 링크 (제휴) */}
-            {detail.shopUrl && (
-              <div style={{ marginTop: 16 }}>
-                <a href={detail.shopUrl} target="_blank" rel="noopener noreferrer nofollow sponsored"
-                  style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
-                    background: C.sage, color: "#fff", textDecoration: "none", borderRadius: 12,
-                    padding: "15px 16px", fontSize: 15, fontWeight: 800, fontFamily: "inherit" }}>
-                  실제 상품 보러가기
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff"
-                    strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M7 17L17 7M9 7h8v8" />
-                  </svg>
-                </a>
-                <div style={{ fontSize: 11.5, color: C.sub, marginTop: 8, lineHeight: 1.6, textAlign: "center" }}>
-                  판매처에서 가격과 상품 구성을 다시 확인해 주세요.<br />
-                  위 제휴 링크로 구매 시 발생하는 소정의 수수료는 푸드온의 운영비용으로 쓰입니다.
-                </div>
-              </div>
-            )}
-
             {/* 라벨 설명 — 정보 전달임을 명시 */}
             <div style={{ background: "#F1EFE8", borderRadius: 12, padding: "12px 14px", margin: "14px 0",
               fontSize: 11.5, color: C.sub, lineHeight: 1.7 }}>
@@ -746,6 +726,26 @@ export default function IngredientSearchApp() {
                 <span style={{ color: C.tagAllergyTx, fontWeight: 600 }}>
                   {detail.facility.join(" · ")}
                 </span>
+              </div>
+            )}
+
+            {/* 구매 링크 (제휴) */}
+            {detail.shopUrl && (
+              <div style={{ marginTop: 16 }}>
+                <a href={detail.shopUrl} target="_blank" rel="noopener noreferrer nofollow sponsored"
+                  style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+                    background: C.sage, color: "#fff", textDecoration: "none", borderRadius: 12,
+                    padding: "15px 16px", fontSize: 15, fontWeight: 800, fontFamily: "inherit" }}>
+                  실제 상품 보러가기
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff"
+                    strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M7 17L17 7M9 7h8v8" />
+                  </svg>
+                </a>
+                <div style={{ fontSize: 11.5, color: C.sub, marginTop: 8, lineHeight: 1.6, textAlign: "center" }}>
+                  판매처에서 가격과 상품 구성을 다시 확인해 주세요.<br />
+                  위 제휴 링크로 구매 시 발생하는 소정의 수수료는 푸드온의 운영비용으로 쓰입니다.
+                </div>
               </div>
             )}
 
