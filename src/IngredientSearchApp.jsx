@@ -760,12 +760,12 @@ export default function IngredientSearchApp() {
                   width: "100%", boxSizing: "border-box", padding: "15px", borderRadius: 14,
                   background: C.sage, color: "#fff", fontSize: 15, fontWeight: 800, textDecoration: "none",
                   WebkitTapHighlightColor: "transparent" }}>
-                🔎 실제 상품 보러가기
+                실제 상품 보러가기
                 <span style={{ fontSize: 16 }}>→</span>
               </a>
-              <div style={{ fontSize: 11, color: C.sub, lineHeight: 1.6, marginTop: 10, textAlign: "center" }}>
-                판매처에서 가격과 상품 구성을 다시 확인해 주세요.<br />
-                위 제휴 링크로 구매 시 발생하는 소정의 수수료는 푸드온의 운영비용으로 쓰입니다.
+              <div style={{ fontSize: 11, color: C.sub, lineHeight: 1.7, marginTop: 11, textAlign: "center" }}>
+                <div>가격·구성은 판매처에서 다시 확인해 주세요.</div>
+                <div>구매 시 일부 수수료는 푸드온 운영에 쓰여요.</div>
               </div>
             </div>
 
