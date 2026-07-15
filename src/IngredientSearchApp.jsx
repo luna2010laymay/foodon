@@ -844,6 +844,23 @@ export default function IngredientSearchApp() {
                 </>
               );
             })()}
+
+            {/* 구매/제휴 링크 — pos_B: 성분·알러지·영양·교차오염·후기 다 확인한 뒤 맨 아래 */}
+            <div style={{ marginTop: 22, paddingTop: 18, borderTop: "1px solid " + C.line }}>
+              <a href={"https://search.shopping.naver.com/search/all?query=" + encodeURIComponent(detail.name)}
+                target="_blank" rel="noopener noreferrer"
+                style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+                  width: "100%", boxSizing: "border-box", padding: "15px", borderRadius: 14,
+                  background: C.sage, color: "#fff", fontSize: 15, fontWeight: 800, textDecoration: "none",
+                  WebkitTapHighlightColor: "transparent" }}>
+                🛒 판매처에서 구매하기
+                <span style={{ fontSize: 16 }}>→</span>
+              </a>
+              <div style={{ fontSize: 11, color: C.sub, lineHeight: 1.6, marginTop: 10, textAlign: "center" }}>
+                판매처에서 가격과 상품 구성을 다시 확인해 주세요.<br />
+                위 제휴 링크로 구매 시 발생하는 소정의 수수료는 푸드온의 운영비용으로 쓰입니다.
+              </div>
+            </div>
           </Sheet>
         )}
 
