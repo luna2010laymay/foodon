@@ -118,7 +118,14 @@ const PRODUCTS = [
       ["나트륨","760 mg","38%"],["탄수화물","71 g","22%"],["당류","16 g","16%"],
       ["지방","12 g","22%"],["트랜스지방","0 g",""],["포화지방","4.6 g","31%"],
       ["콜레스테롤","0 mg","0%"],["단백질","12 g","22%"]] },
-    reviews: [] },
+    reviews: [
+      { name: "바삭러버", age: "30대", pref: ["저당", "유기농"], rating: 5, date: "2026.06.12",
+        good: "옛날 건빵 그대로 바삭하고 담백해요. 단 거 안 좋아하는 분께 추천!",
+        bad: "먹다 보면 목이 좀 메어요. 물이랑 같이 드세요.", likes: 12 },
+      { name: "건강한하루", age: "40대", pref: ["채식지향"], rating: 4, date: "2026.05.28",
+        good: "원재료가 단순하고 국산 현미라 믿고 먹어요.",
+        bad: "양 대비 가격은 살짝 아쉬워요.", likes: 5 },
+    ] },
   { id: 19, name: "특등급 국산 콩물", brand: "풀무원", cat: "음료", emoji: "🥛", img: IMG.soymilk2,
     ing: [["풀무원특등급콩즙[대두(국산), 두류고형분 7.3%]",["allergy"]],["천일염(국산)",[]]],
     contains: ["대두"],
@@ -755,15 +762,21 @@ export default function IngredientSearchApp() {
                 아직 등록된 후기가 없어요.
               </div>
             )}
-            {detail.reviews.map((r, i) => (
-              <div key={i} style={{ background: C.card, border: "1px solid " + C.line, borderRadius: 12,
-                padding: 12, marginTop: 8 }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <span style={{ fontSize: 12.5, fontWeight: 700 }}>{r[0]}</span>
-                  <span style={{ fontSize: 12, color: C.sage }}>{"★".repeat(r[2])}<span style={{ color: C.line }}>{"★".repeat(5 - r[2])}</span></span>
+            {detail.reviews.length > 0 && (
+              <div style={{ display: "flex", alignItems: "center", gap: 14, border: "1px solid " + C.line,
+                borderRadius: 14, padding: "13px 16px", marginBottom: 2 }}>
+                <div style={{ fontSize: 28, fontWeight: 900, color: C.ink, lineHeight: 1 }}>
+                  {(detail.reviews.reduce((s, r) => s + r.rating, 0) / detail.reviews.length).toFixed(1)}
+                  <span style={{ fontSize: 13, color: "#9AA093", fontWeight: 700 }}>/5</span>
                 </div>
-                <div style={{ fontSize: 13, color: "#444", marginTop: 6, lineHeight: 1.5 }}>{r[1]}</div>
+                <div>
+                  <div style={{ fontSize: 13 }}><Stars n={Math.round(detail.reviews.reduce((s, r) => s + r.rating, 0) / detail.reviews.length)} /></div>
+                  <div style={{ fontSize: 11, color: "#8A9086", marginTop: 3 }}>후기 {detail.reviews.length}개 · 별점 평균</div>
+                </div>
               </div>
+            )}
+            {detail.reviews.map((r, i) => (
+              <ReviewCard key={i} r={r} rid={detail.id + "-" + i} />
             ))}
           </Sheet>
         )}
@@ -888,6 +901,73 @@ function FilterRow({ title, icon, chips, color, onAdd, onRemove, empty, titleWei
 function SectionTitle({ children }) {
   return <div style={{ fontSize: 13, fontWeight: 800, color: C.sage, margin: "4px 0 8px",
     letterSpacing: 0.3 }}>{children}</div>;
+}
+
+function Stars({ n }) {
+  return (
+    <span style={{ color: C.sage, letterSpacing: 1 }}>
+      {"\u2605".repeat(n)}<span style={{ color: "#DDE2D8" }}>{"\u2605".repeat(5 - n)}</span>
+    </span>
+  );
+}
+
+function ReviewCard({ r, rid }) {
+  const KEY = "foodon_rev_" + rid;
+  const [st, setSt] = useState(() => {
+    try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; }
+  });
+  const save = (n) => { setSt(n); try { localStorage.setItem(KEY, JSON.stringify(n)); } catch (e) {} };
+  const liked = !!st.liked, reported = !!st.reported;
+  const likeCount = (r.likes || 0) + (liked ? 1 : 0);
+  const report = () => {
+    if (reported) return;
+    if (window.confirm("이 후기를 부적절한 후기로 신고할까요?")) save({ ...st, reported: true });
+  };
+  const chip = { fontSize: 10.5, fontWeight: 700, padding: "3px 8px", borderRadius: 999, background: "#EFF1EC", color: C.sub };
+  const chipPref = { ...chip, background: C.sageSoft, color: C.sage };
+  const lbl = { display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, padding: "2px 9px", borderRadius: 6 };
+  const body = { fontSize: 12.5, color: "#3F463A", lineHeight: 1.55, marginTop: 6 };
+  return (
+    <div style={{ border: "1px solid #EDEDEA", borderRadius: 14, padding: "14px 15px", marginTop: 10, opacity: reported ? 0.5 : 1 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+        <div>
+          <div style={{ fontSize: 13.5, fontWeight: 800, color: C.ink }}>{r.name}</div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 5, marginTop: 6 }}>
+            {r.age && <span style={chip}>{r.age}</span>}
+            {(r.pref || []).map((p) => <span key={p} style={chipPref}>{p}</span>)}
+          </div>
+        </div>
+        <span style={{ fontSize: 11, color: "#9AA093", whiteSpace: "nowrap", marginTop: 2 }}>{r.date}</span>
+      </div>
+      <div style={{ fontSize: 13, marginTop: 10 }}><Stars n={r.rating} /></div>
+      {r.good && (
+        <div style={{ marginTop: 11 }}>
+          <span style={{ ...lbl, background: C.sageSoft, color: "#2C6A4F" }}>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9.2" /><path d="M8.2 14.2s1.4 2 3.8 2 3.8-2 3.8-2" /><path d="M9 9.2h.01M15 9.2h.01" /></svg> 좋은점
+          </span>
+          <div style={body}>{r.good}</div>
+        </div>
+      )}
+      {r.bad && (
+        <div style={{ marginTop: 11 }}>
+          <span style={{ ...lbl, background: C.tagAllergyBg, color: C.tagAllergyTx }}>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9.2" /><path d="M8.2 15.6s1.4-2 3.8-2 3.8 2 3.8 2" /><path d="M9 9.2h.01M15 9.2h.01" /></svg> 아쉬운점
+          </span>
+          <div style={body}>{r.bad}</div>
+        </div>
+      )}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 13 }}>
+        <button onClick={report} disabled={reported} style={{ display: "inline-flex", alignItems: "center", gap: 4, background: "none", border: "none", padding: 4, fontSize: 11.5, fontWeight: 600, color: reported ? C.sage : "#A7ADA1", cursor: reported ? "default" : "pointer", fontFamily: "inherit" }}>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 21V4M5 4h11l-1.5 4L16 12H5" /></svg>
+          {reported ? "신고 접수됨" : "신고"}
+        </button>
+        <button onClick={() => save({ ...st, liked: !liked })} style={{ display: "inline-flex", alignItems: "center", gap: 6, border: "1px solid " + (liked ? C.sage : "#D8DCD3"), background: liked ? C.sageSoft : "#fff", borderRadius: 999, padding: "7px 14px", fontSize: 12, fontWeight: 700, color: liked ? C.sage : "#5B6157", cursor: "pointer", fontFamily: "inherit" }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 10v10H4V10zM7 10l5-7c1.3 0 2 .9 2 2v3h4.6c1.2 0 2.1 1.1 1.9 2.3l-1.3 6c-.2.9-1 1.4-1.9 1.4H7" /></svg>
+          추천 <span style={{ fontWeight: 800, color: C.sage }}>{likeCount}</span>
+        </button>
+      </div>
+    </div>
+  );
 }
 
 function Sheet({ children, title, onClose }) {
