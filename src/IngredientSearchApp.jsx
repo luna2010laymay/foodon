@@ -710,7 +710,7 @@ export default function IngredientSearchApp() {
                   style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
                     background: C.sage, color: "#fff", textDecoration: "none", borderRadius: 12,
                     padding: "15px 16px", fontSize: 15, fontWeight: 800, fontFamily: "inherit" }}>
-                  구매하러 가기
+                  실제 상품 보러가기
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff"
                     strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M7 17L17 7M9 7h8v8" />
