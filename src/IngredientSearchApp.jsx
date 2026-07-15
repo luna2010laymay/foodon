@@ -107,6 +107,7 @@ const PRODUCTS = [
       ["베타카로틴","3,150 ㎍",""],["총폴리페놀","12 mg",""]] },
     reviews: [] },
   { id: 18, name: "현미 건빵", brand: "올가홀푸드", cat: "과자", emoji: "🥖", img: IMG.geonppang,
+    shopUrl: "https://shop.pulmuone.co.kr/shop/goodsView/42438?ContentCd=%ED%98%84%EB%AF%B8%EA%B1%B4%EB%B9%B5&PageCd=P_PC_SerKwd",
     ing: [["밀가루(밀:국산)",["allergy"]],["현미가루(현미:국산)",[]],["통밀가루(밀:국산)",["allergy"]],
       ["설탕",[]],["쇼트닝[팜유, 팜올레인유, d-토코페롤(혼합형)]",["additive"]],["밀글루텐",["allergy"]],
       ["검정깨(국산)",[]],["탄산수소나트륨",["additive"]],["탈지분유",["allergy","animal"]],
@@ -698,6 +699,26 @@ export default function IngredientSearchApp() {
                 </div>
                 <div style={{ fontSize: 10.5, color: C.sub, marginTop: 6, lineHeight: 1.5 }}>
                   % 영양성분 기준치: 2,000 kcal 기준이므로 개인 필요 열량에 따라 다를 수 있어요.
+                </div>
+              </div>
+            )}
+
+            {/* 구매 링크 (제휴) */}
+            {detail.shopUrl && (
+              <div style={{ marginTop: 16 }}>
+                <a href={detail.shopUrl} target="_blank" rel="noopener noreferrer nofollow sponsored"
+                  style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+                    background: C.sage, color: "#fff", textDecoration: "none", borderRadius: 12,
+                    padding: "15px 16px", fontSize: 15, fontWeight: 800, fontFamily: "inherit" }}>
+                  구매하러 가기
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff"
+                    strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M7 17L17 7M9 7h8v8" />
+                  </svg>
+                </a>
+                <div style={{ fontSize: 11.5, color: C.sub, marginTop: 8, lineHeight: 1.6, textAlign: "center" }}>
+                  판매처에서 가격과 상품 구성을 다시 확인해 주세요.<br />
+                  푸드온 제휴 링크로, 구매 시 발생하는 소정의 수수료는 푸드온을 운영하는 데 쓰입니다. (구매 가격에는 영향이 없어요)
                 </div>
               </div>
             )}
