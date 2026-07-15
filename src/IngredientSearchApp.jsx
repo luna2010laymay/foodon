@@ -424,6 +424,14 @@ export default function IngredientSearchApp() {
   const advCount = advToggleCount + include.length;
   // 검색어·필터가 하나라도 있을 때만 결과 노출 (첫 화면엔 결과 숨김)
   const searched = productQuery.trim() !== "" || exclude.length > 0 || advCount > 0;
+  // 인기 검색어 순위 등락 배지 — ch: 양수 상승(▲) · 음수 하락(▼) · 0 유지(–) · "new" 신규
+  const rankBadge = (ch) => {
+    if (ch === "new") return <span style={{ fontSize: 9.5, fontWeight: 900, color: "#fff",
+      background: C.orange, borderRadius: 4, padding: "1px 4px", letterSpacing: 0.2 }}>NEW</span>;
+    if (ch > 0) return <span style={{ fontSize: 11, fontWeight: 800, color: "#D63B2F" }}>▲{ch}</span>;
+    if (ch < 0) return <span style={{ fontSize: 11, fontWeight: 800, color: "#2F6FB0" }}>▼{-ch}</span>;
+    return <span style={{ fontSize: 12, fontWeight: 700, color: "#C2C6BC" }}>–</span>;
+  };
 
   return (
     <div style={{ display: "flex", justifyContent: "center", background: "#FFFFFF",
@@ -550,17 +558,21 @@ export default function IngredientSearchApp() {
             <div style={{ marginTop: 18 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                 <span style={{ fontSize: 14.5, fontWeight: 800, color: C.ink }}>🔥 인기 검색어</span>
-                <span style={{ fontSize: 11, color: C.sub, fontWeight: 600 }}>지금 많이 찾는</span>
+                <span style={{ fontSize: 11, color: C.sub, fontWeight: 600 }}>지금 많이 찾는 · 실시간</span>
               </div>
               <div style={{ marginTop: 6 }}>
                 {[
-                  { w: "떡볶이", run: () => setProductQuery("떡볶이") },
-                  { w: "채식", run: () => { setVeganOnly(true); setShowMore(true); } },
-                  { w: "두유", run: () => setProductQuery("두유") },
-                  { w: "과자", run: () => setProductQuery("과자") },
-                  { w: "고구마", run: () => setProductQuery("고구마") },
-                  { w: "무첨가", run: () => { setAdditiveFree(true); setShowMore(true); } },
-                ].map(({ w, run }, i) => (
+                  { w: "떡볶이", ch: 2, run: () => setProductQuery("떡볶이") },
+                  { w: "두유", ch: 1, run: () => setProductQuery("두유") },
+                  { w: "무첨가", ch: "new", run: () => { setAdditiveFree(true); setShowMore(true); } },
+                  { w: "채식", ch: -2, run: () => { setVeganOnly(true); setShowMore(true); } },
+                  { w: "과자", ch: 3, run: () => setProductQuery("과자") },
+                  { w: "고구마", ch: -1, run: () => setProductQuery("고구마") },
+                  { w: "토마토", ch: "new", run: () => setProductQuery("토마토") },
+                  { w: "글루텐프리", ch: 1, run: () => { setGlutenFree(true); setShowMore(true); } },
+                  { w: "서리태", ch: 0, run: () => setProductQuery("서리태") },
+                  { w: "훈제오리", ch: -3, run: () => setProductQuery("오리") },
+                ].map(({ w, ch, run }, i) => (
                   <button key={w} onClick={run}
                     style={{ width: "100%", display: "flex", alignItems: "center", gap: 13, padding: "12px 2px",
                       border: "none", borderBottom: "1px solid #F1F0EC", background: "none",
@@ -568,7 +580,8 @@ export default function IngredientSearchApp() {
                       WebkitTapHighlightColor: "transparent" }}>
                     <span style={{ width: 20, fontSize: 15, fontWeight: 900, textAlign: "center", flexShrink: 0,
                       color: i < 3 ? C.sage : "#B8BCB2" }}>{i + 1}</span>
-                    <span style={{ fontSize: 14.5, fontWeight: 700, color: C.ink }}>{w}</span>
+                    <span style={{ flex: 1, minWidth: 0, fontSize: 14.5, fontWeight: 700, color: C.ink }}>{w}</span>
+                    <span style={{ flexShrink: 0, minWidth: 30, textAlign: "right" }}>{rankBadge(ch)}</span>
                   </button>
                 ))}
               </div>
