@@ -121,7 +121,13 @@ const PRODUCTS = [
       ["나트륨","760 mg","38%"],["탄수화물","71 g","22%"],["당류","16 g","16%"],
       ["지방","12 g","22%"],["트랜스지방","0 g",""],["포화지방","4.6 g","31%"],
       ["콜레스테롤","0 mg","0%"],["단백질","12 g","22%"]] },
-    reviews: [] },
+    reviews: [
+      { user: "바삭러버", date: "2026.06.12", tags: ["30대","저당","유기농"], stars: 5,
+        good: "옛날 건빵 그대로 바삭하고 담백해요. 단 거 안 좋아하는 분께 추천!",
+        bad: "먹다 보면 목이 좀 메어요. 물이랑 같이 드세요.", rec: 24 },
+      { user: "건강한하루", date: "2026.05.28", tags: ["40대","채식지향"], stars: 4,
+        good: "원재료가 단순하고 국산 현미라 믿고 먹어요.",
+        bad: "양 대비 가격은 살짝 아쉬워요.", rec: 9 }] },
   { id: 19, name: "특등급 국산 콩물", brand: "풀무원", cat: "음료", emoji: "🥛", img: IMG.soymilk2,
     ing: [["풀무원특등급콩즙[대두(국산), 두류고형분 7.3%]",["allergy"]],["천일염(국산)",[]]],
     contains: ["대두"],
@@ -752,32 +758,92 @@ export default function IngredientSearchApp() {
                 아직 등록된 후기가 없어요.
               </div>
             )}
-            {detail.reviews.map((r, i) => {
-              const rk = detail.id + "-" + i;
-              const mine = !!helpful[rk];
-              const count = (r[3] || 0) + (mine ? 1 : 0);
+            {detail.reviews.length > 0 && (() => {
+              // 구형(배열 [닉,내용,별점,추천]) · 신형(객체 {user,date,tags,stars,good,bad,rec}) 모두 정규화
+              const norm = detail.reviews.map((r) => Array.isArray(r)
+                ? { user: r[0], text: r[1], stars: r[2], rec: r[3] || 0, tags: [], date: null, good: null, bad: null }
+                : { user: r.user, text: null, stars: r.stars, rec: r.rec || 0, tags: r.tags || [], date: r.date || null, good: r.good || null, bad: r.bad || null });
+              const avg = norm.reduce((s, r) => s + r.stars, 0) / norm.length;
+              const avgRound = Math.floor(avg + 1e-9); // 4.5 → ★4개 (반개는 내림)
               return (
-              <div key={i} style={{ background: C.card, border: "1px solid " + C.line, borderRadius: 12,
-                padding: 12, marginTop: 8 }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <span style={{ fontSize: 12.5, fontWeight: 700 }}>{r[0]}</span>
-                  <span style={{ fontSize: 12, color: C.sage }}>{"★".repeat(r[2])}<span style={{ color: C.line }}>{"★".repeat(5 - r[2])}</span></span>
-                </div>
-                <div style={{ fontSize: 13, color: "#444", marginTop: 6, lineHeight: 1.5 }}>{r[1]}</div>
-                <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 10 }}>
-                  <button onClick={() => setHelpful((h) => ({ ...h, [rk]: !h[rk] }))}
-                    style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "6px 12px",
-                      borderRadius: 999, cursor: "pointer", border: "1px solid " + (mine ? C.sage : C.line),
-                      background: mine ? C.sageSoft : C.card, color: mine ? C.sage : C.sub,
-                      fontSize: 12, fontWeight: 700, fontFamily: "inherit", outline: "none",
-                      WebkitTapHighlightColor: "transparent", transition: "background .15s ease, border-color .15s ease, color .15s ease" }}>
-                    <span style={{ fontSize: 13 }}>👍</span>
-                    추천{count > 0 ? " " + count : ""}
-                  </button>
-                </div>
-              </div>
+                <>
+                  {/* 별점 평균 요약 */}
+                  <div style={{ display: "flex", alignItems: "center", gap: 12, background: C.sageSoft,
+                    border: "1px solid " + C.line, borderRadius: 12, padding: "12px 16px", marginTop: 8 }}>
+                    <div style={{ fontSize: 26, fontWeight: 900, color: C.ink, lineHeight: 1 }}>
+                      {avg.toFixed(1)}<span style={{ fontSize: 13, fontWeight: 700, color: C.sub }}>/5</span>
+                    </div>
+                    <div>
+                      <div style={{ fontSize: 14, color: C.sage, letterSpacing: 1 }}>
+                        {"★".repeat(avgRound)}<span style={{ color: "#CBD2C4" }}>{"★".repeat(5 - avgRound)}</span>
+                      </div>
+                      <div style={{ fontSize: 11.5, color: C.sub, marginTop: 2 }}>후기 {norm.length}개 · 별점 평균</div>
+                    </div>
+                  </div>
+
+                  {norm.map((r, i) => {
+                    const rk = detail.id + "-" + i;
+                    const mine = !!helpful[rk];
+                    const count = r.rec + (mine ? 1 : 0);
+                    return (
+                      <div key={i} style={{ background: C.card, border: "1px solid " + C.line, borderRadius: 12,
+                        padding: 12, marginTop: 8 }}>
+                        {/* 닉네임 + 날짜 */}
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                          <span style={{ fontSize: 13, fontWeight: 800, color: C.ink }}>{r.user}</span>
+                          {r.date && <span style={{ fontSize: 11.5, color: "#9DA295" }}>{r.date}</span>}
+                        </div>
+                        {/* 리뷰어 태그 (연령대·식성 등) */}
+                        {r.tags.length > 0 && (
+                          <div style={{ display: "flex", flexWrap: "wrap", gap: 5, marginTop: 7 }}>
+                            {r.tags.map((t) => (
+                              <span key={t} style={{ fontSize: 11, fontWeight: 700, color: "#5B6152",
+                                background: "#EFF1EC", borderRadius: 999, padding: "3px 9px" }}>{t}</span>
+                            ))}
+                          </div>
+                        )}
+                        {/* 별점 */}
+                        <div style={{ fontSize: 13, color: C.sage, marginTop: 8, letterSpacing: 0.5 }}>
+                          {"★".repeat(r.stars)}<span style={{ color: "#CBD2C4" }}>{"★".repeat(5 - r.stars)}</span>
+                        </div>
+                        {/* 좋은점 */}
+                        {r.good && (
+                          <div style={{ marginTop: 10 }}>
+                            <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5,
+                              fontWeight: 800, color: C.sage, background: C.sageSoft, borderRadius: 6, padding: "3px 8px" }}>😊 좋은점</span>
+                            <div style={{ fontSize: 13, color: "#444", marginTop: 6, lineHeight: 1.5 }}>{r.good}</div>
+                          </div>
+                        )}
+                        {/* 아쉬운점 */}
+                        {r.bad && (
+                          <div style={{ marginTop: 10 }}>
+                            <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5,
+                              fontWeight: 800, color: "#9A7B34", background: "#F7EFD9", borderRadius: 6, padding: "3px 8px" }}>😥 아쉬운점</span>
+                            <div style={{ fontSize: 13, color: "#444", marginTop: 6, lineHeight: 1.5 }}>{r.bad}</div>
+                          </div>
+                        )}
+                        {/* 단일 텍스트(구형 후기) */}
+                        {r.text && (
+                          <div style={{ fontSize: 13, color: "#444", marginTop: 8, lineHeight: 1.5 }}>{r.text}</div>
+                        )}
+                        {/* 추천 버튼 */}
+                        <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 10 }}>
+                          <button onClick={() => setHelpful((h) => ({ ...h, [rk]: !h[rk] }))}
+                            style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "6px 12px",
+                              borderRadius: 999, cursor: "pointer", border: "1px solid " + (mine ? C.sage : C.line),
+                              background: mine ? C.sageSoft : C.card, color: mine ? C.sage : C.sub,
+                              fontSize: 12, fontWeight: 700, fontFamily: "inherit", outline: "none",
+                              WebkitTapHighlightColor: "transparent", transition: "background .15s ease, border-color .15s ease, color .15s ease" }}>
+                            <span style={{ fontSize: 13 }}>👍</span>
+                            추천{count > 0 ? " " + count : ""}
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </>
               );
-            })}
+            })()}
           </Sheet>
         )}
 
