@@ -66,7 +66,9 @@ const PRODUCTS = [
       ["나트륨","15 mg","1%"],["탄수화물","11 g","3%"],["당류","10 g","10%"],
       ["식이섬유","1 g 미만","3%"],["지방","0 g","0%"],["트랜스지방","0 g",""],
       ["포화지방","0 g","0%"],["콜레스테롤","0 mg","0%"],["단백질","2 g","4%"]] },
-    reviews: [] },
+    reviews: [
+      ["토마토러버", "성분이 딱 세 가지라 안심돼요. 농축이라 진하고 새콤한 맛이 제대로예요.", 5, 24],
+      ["집밥하는날", "요리용으로 물에 타 먹으니 딱 좋아요. 첨가물 없는 게 제일 마음에 들어요.", 4, 9]] },
   { id: 14, name: "아임리얼 100 고농축 블루베리", brand: "풀무원", cat: "음료", emoji: "🫐", img: IMG.blueberry,
     ing: [["정제수",[]],["배농축과즙(이스라엘산)",[]],["블루베리퓨레(캐나다산)",[]],["블루베리농축액(오스트리아산 61%·칠레산 23%·미국산 16%)",[]]],
     facility: ["우유","메밀","땅콩","호두","대두","복숭아","토마토","밀","잣","돼지고기","쇠고기","알류"],
@@ -96,7 +98,9 @@ const PRODUCTS = [
       ["당류","0.2 g","0%"],["지방","1.7 g","3%"],["트랜스지방","0 g",""],
       ["포화지방","0.6 g","4%"],["콜레스테롤","0 mg","0%"],["단백질","3 g","5%"],
       ["칼슘","24 mg","3%"],["철분","0.6 mg","5%"]] },
-    reviews: [] },
+    reviews: [
+      ["콩국수매니아", "국산 서리태라 고소하고 진해요. 여름 콩국수에 이만한 게 없네요.", 5, 18],
+      ["비건집밥", "성분이 콩즙이랑 천일염뿐이라 아이도 안심하고 먹여요. 재구매합니다.", 5, 31]] },
   { id: 17, name: "풀무원 100% 당근즙", brand: "풀무원", cat: "음료", emoji: "🥕", img: IMG.carrot,
     ing: [["당근즙 100%(당근: 국산)",[]]],
     facility: ["대두","밀","복숭아","알류","우유","토마토"],
@@ -372,6 +376,7 @@ export default function IngredientSearchApp() {
   const [ingDetail, setIngDetail] = useState(null); // 성분 상세 시트 { name, labels }
   const [pickerOpen, setPickerOpen] = useState(null); // 'exclude' | 'include' | null
   const [showMore, setShowMore] = useState(false);    // 상세 필터 펼침 여부
+  const [helpful, setHelpful] = useState({});         // 내가 '추천' 누른 후기 { "productId-idx": true }
 
   const results = useMemo(() => {
     const q = productQuery.trim().toLowerCase();
@@ -734,7 +739,11 @@ export default function IngredientSearchApp() {
                 아직 등록된 후기가 없어요.
               </div>
             )}
-            {detail.reviews.map((r, i) => (
+            {detail.reviews.map((r, i) => {
+              const rk = detail.id + "-" + i;
+              const mine = !!helpful[rk];
+              const count = (r[3] || 0) + (mine ? 1 : 0);
+              return (
               <div key={i} style={{ background: C.card, border: "1px solid " + C.line, borderRadius: 12,
                 padding: 12, marginTop: 8 }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -742,8 +751,20 @@ export default function IngredientSearchApp() {
                   <span style={{ fontSize: 12, color: C.sage }}>{"★".repeat(r[2])}<span style={{ color: C.line }}>{"★".repeat(5 - r[2])}</span></span>
                 </div>
                 <div style={{ fontSize: 13, color: "#444", marginTop: 6, lineHeight: 1.5 }}>{r[1]}</div>
+                <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 10 }}>
+                  <button onClick={() => setHelpful((h) => ({ ...h, [rk]: !h[rk] }))}
+                    style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "6px 12px",
+                      borderRadius: 999, cursor: "pointer", border: "1px solid " + (mine ? C.sage : C.line),
+                      background: mine ? C.sageSoft : C.card, color: mine ? C.sage : C.sub,
+                      fontSize: 12, fontWeight: 700, fontFamily: "inherit", outline: "none",
+                      WebkitTapHighlightColor: "transparent", transition: "background .15s ease, border-color .15s ease, color .15s ease" }}>
+                    <span style={{ fontSize: 13 }}>👍</span>
+                    추천{count > 0 ? " " + count : ""}
+                  </button>
+                </div>
               </div>
-            ))}
+              );
+            })}
           </Sheet>
         )}
 
