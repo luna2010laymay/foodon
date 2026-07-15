@@ -718,7 +718,7 @@ export default function IngredientSearchApp() {
                 </a>
                 <div style={{ fontSize: 11.5, color: C.sub, marginTop: 8, lineHeight: 1.6, textAlign: "center" }}>
                   판매처에서 가격과 상품 구성을 다시 확인해 주세요.<br />
-                  푸드온 제휴 링크로, 구매 시 발생하는 소정의 수수료는 푸드온을 운영하는 데 쓰입니다. (구매 가격에는 영향이 없어요)
+                  위 제휴 링크로 구매 시 발생하는 소정의 수수료는 푸드온의 운영비용으로 쓰입니다.
                 </div>
               </div>
             )}
