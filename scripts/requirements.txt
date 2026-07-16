@@ -1,0 +1,8 @@
+# 누끼 배치 스크립트(nukki_batch.py) 의존성
+# 설치:  pip install -r scripts/requirements.txt
+pillow
+numpy
+scipy
+# (선택) AI 배경제거 — 복잡한 배경까지 깔끔하게. 첫 실행 시 모델 자동 다운로드(인터넷 필요)
+# rembg
+# onnxruntime
