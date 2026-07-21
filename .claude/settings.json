@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "permissions": {
+    "allow": [
+      "Bash(cd *)",
+      "Bash(python3 *)",
+      "Bash(git *)",
+      "Bash(npm *)",
+      "Bash(cp *)",
+      "Bash(ls *)",
+      "Bash(mkdir *)",
+      "Bash(echo *)",
+      "Bash(sleep *)",
+      "Bash(cat *)",
+      "Bash(find *)",
+      "Bash(grep *)",
+      "Read",
+      "Edit",
+      "Write"
+    ],
+    "defaultMode": "acceptEdits"
+  }
+}
