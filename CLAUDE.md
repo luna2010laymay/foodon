@@ -3,6 +3,11 @@
 성분(전성분·알레르기·복합성분)으로 포장식품을 검색하는 한국어 React/Vite 앱.
 이 파일은 **새 세션이 바로 이어받아 상품을 추가**할 수 있게 정리한 규칙서예요.
 
+## 현재 상태 (이어받을 때 먼저 확인)
+- 총 상품 **304개** (`src/products.json`), 다음 `id`는 **317**부터. (실제 값은 `python3 -c "import json;d=json.load(open('src/products.json'));print(len(d),max(x['id'] for x in d))"`로 확인)
+- 개발 브랜치 = **`claude/add-product-h4mq6z`** → 커밋 후 **`main`에도 머지·푸시**해야 라이브 반영.
+- 이미지 업로드 경로: `/root/.claude/uploads/<세션ID>/` (사용자가 `@경로`로 보내줌). 라벨/상품 사진이 쌍으로 옴.
+
 ## 이 앱의 핵심 작업: "상품 추가"
 사용자가 **라벨 사진 + 상품 사진 + 상품명**을 보내면 →
 1. 상품 사진 **누끼**(배경 흰색 + 정사각 중앙정렬) 처리 → `public/products/<이름>.jpg`
@@ -13,8 +18,15 @@
 
 ## 배포 구조 (중요)
 - **Vercel이 배포하는 브랜치 = `main`.** 라이브 주소: https://foodon-nine.vercel.app/
-- 개발 브랜치 = `claude/github-file-sync-afzgxs`
-- 상품이 라이브에 보이려면 **`main`에 반영돼야 함.** 사용자가 "메인에 올려줘/보이게 해줘"라고 하면 main으로 푸시.
+- 개발 브랜치 = **`claude/add-product-h4mq6z`** (매 상품마다 여기 커밋 후 `main`에 머지·푸시하는 게 기본 흐름)
+- 상품이 라이브에 보이려면 **`main`에 반영돼야 함.** 매번 아래 흐름으로 dev→main 반영:
+  ```bash
+  git add -A && git commit -q -m "<상품명> 추가"
+  git push -u origin claude/add-product-h4mq6z
+  git checkout main && git pull --no-edit origin main
+  git merge --no-edit claude/add-product-h4mq6z && git push origin main
+  git checkout claude/add-product-h4mq6z
+  ```
 - 푸시 후 Vercel이 1~2분 뒤 자동 재배포. 캐시 때문에 안 보이면 Ctrl+Shift+R.
 
 ## products.json 스키마
@@ -67,12 +79,30 @@
 `퍼센트 = round(값 / 기준치 * 100)%`. **트랜스지방은 % 없음**(빈 문자열).
 라벨에 %가 이미 있으면 그대로 옮겨 적으면 됨.
 
-## 누끼(배경제거) 방법
+## 상품 사진 처리 (누끼 vs 흰 캔버스 letterbox) — 실전 규칙
+사진 배경/모양에 따라 **두 방법 중 하나**를 골라 흰 배경 정사각 이미지를 만든다.
+
+**1) 누끼 (flood-fill)** — 상품이 **컬러(초록·빨강·검정·파랑 등) 파우치/튜브**이고 배경이 흰색일 때:
 ```bash
-python3 scripts/nukki_batch.py --indir <raw폴더> --outdir <out폴더> --method flood --flood-thr 42
+python3 scripts/nukki_batch.py --indir <raw폴더> --outdir <out폴더> --method flood --flood-thr 42 --overwrite
 ```
-- Pillow+numpy+scipy 필요(오프라인 flood-fill). 결과: 흰 배경 정사각 JPEG.
-- 사용자가 보낸 이미지는 대화 트랜스크립트에서 추출(스크래치패드의 `dump_all.mjs` 참고). 현재 메시지 이미지는 1턴 정도 늦게 잡히기도 함.
+- Pillow+numpy+scipy 필요(오프라인 flood-fill). 모서리 흰색에서 번져 배경 제거.
+
+**2) 흰 정사각 letterbox (누끼 X)** — **흰색/크림/투명 용기·박스·비닐팩·"사진형(음식사진이 인쇄된)" 패키지**일 때. flood를 쓰면 흰 포장까지 먹어버리므로 **크롭만 하고 흰 정사각 캔버스 중앙에 얹는다**:
+```python
+from PIL import Image
+im=Image.open(SRC).convert('RGB'); w,h=im.size
+c=im.crop((int(w*x0),int(h*y0),int(w*x1),int(h*y1)))   # 상품 영역만
+w2,h2=c.size; s=max(w2,h2)
+cv=Image.new('RGB',(s,s),(255,255,255)); cv.paste(c,((s-w2)//2,(s-h2)//2))
+cv.save(OUT,quality=95)
+```
+
+**크롭 시 공통 주의**
+- 사진에 **폰 크기표시 목업**(로켓프레시 등)이나 **여러 개 진열/멀티팩 낱개**가 같이 보이면 → **상품 하나만** 남기고 크롭.
+- 상품 이미지 파일과 라벨 이미지 파일을 헷갈리지 말 것(라벨엔 영양성분표·바코드가 큼).
+- 결과를 Read로 눈으로 확인 후 `public/products/`로 복사.
+- 이미지 좌표는 표시 크기(예 921×2000) 기준 분수로 잡고 crop 시 원본 크기에 곱함.
 
 ## 코드 주의사항
 - **`src/IngredientSearchApp.jsx`에는 NUL 바이트가 정확히 4개** 있음(전성분 괄호 처리용 sentinel, 47~49번째 줄). 편집 시 보존해야 함 →
@@ -86,8 +116,22 @@ git pull --no-edit origin <branch>   # 충돌 예방
 git commit -q -m "<상품명> 추가"
 git push -u origin <branch>          # 네트워크 실패 시 2s→4s→8s→16s 백오프 재시도
 ```
-- 개발은 `claude/github-file-sync-afzgxs`, 라이브 반영은 `main`.
+- 개발은 `claude/add-product-h4mq6z`, 라이브 반영은 `main` (위 "배포 구조"의 dev→main 흐름 사용).
 - **API 키(data.go.kr / 식품안전나라)는 절대 커밋 금지**(환경변수로만). 비밀번호처럼 취급.
+
+## 카테고리(cat) 분류 감 (실제 적용 예)
+- **두부**: 순두부·연두부·촌두부·찌개두부 등 대두 두부류. **만두**: 물만두·김치만두·갈비만두.
+- **떡류**: 떡국떡·떡볶이·쌀떡꼬치·어묵떡볶이 키트. **면류**: 파스타·소바·칼국수·소면.
+- **간편식**: 냉동 핫도그·피자·피자브리또·볶음밥·타코야끼·치즈볼·밀키트(부대전골·순두부찌개·안동찜닭 등)·3분류·즉석짜장.
+- **축산·델리**: 소시지·햄·프랑크·떡갈비·동그랑땡·팝콘치킨·양념육(불고기·칼집돼지)·훈제오리.
+- **수산가공**: 어묵·어묵탕·꼬치어묵. **농산가공**: 감자튀김 등 냉동 감자/채소가공.
+- **과자**: 감자칩·젤리(하리보·마이구미·젤라틴 캔디류)·스낵. **반찬**: 단무지·장아찌.
+- 애매하면 앱의 기존 상품 분류를 grep으로 참고(`python3 -c "import json;[print(x['cat'],x['name']) for x in json.load(open('src/products.json')) if ...]"`).
+
+## 다구성/영양 처리 팁
+- 라벨에 **일부 구성의 영양성분만** 있으면(예: 소스 영양 없음) 있는 것만 넣고 `serving`에 `"430 g (면+낙지곱창, 소스 제외)"`처럼 범위 명시.
+- 밀키트/2인분 등은 라벨 기준(총 내용량 or 가공식품 g or 1인분)을 그대로 serving에 쓰고 kcal도 맞춤.
+- **사진 hash가 달라도 같은 상품이면 중복 추가 금지**(사용자가 같은 걸 다시 보낼 때 있음). 단 **용량·포장이 다르면 다른 상품**.
 
 ## 참고: 자동 데이터 파이프라인(현재 보류)
 `scripts/` 에 공공데이터(영양성분 CSV) + 전성분 API 로 대량 생성하는 스크립트가 있으나,
