@@ -4,9 +4,14 @@
 이 파일은 **새 세션이 바로 이어받아 상품을 추가**할 수 있게 정리한 규칙서예요.
 
 ## 현재 상태 (이어받을 때 먼저 확인)
-- 총 상품 **304개** (`src/products.json`), 다음 `id`는 **317**부터. (실제 값은 `python3 -c "import json;d=json.load(open('src/products.json'));print(len(d),max(x['id'] for x in d))"`로 확인)
-- 개발 브랜치 = **`claude/add-product-h4mq6z`** → 커밋 후 **`main`에도 머지·푸시**해야 라이브 반영.
-- 이미지 업로드 경로: `/root/.claude/uploads/<세션ID>/` (사용자가 `@경로`로 보내줌). 라벨/상품 사진이 쌍으로 옴.
+- 총 상품 **434개** (`src/products.json`), 다음 `id`는 **447**부터. (실제 값은 `python3 -c "import json;d=json.load(open('src/products.json'));print(len(d),max(x['id'] for x in d))"`로 확인)
+- 개발 브랜치 = **세션마다 지정됨**(예: `claude/product-addition-continue-*`) → 커밋 후 **`main`에도 머지·푸시**해야 라이브 반영. (배포 대상은 항상 `main`)
+- 이미지 업로드 경로: `/root/.claude/uploads/<세션ID>/` (사용자가 `@경로`로 보내줌). 보통 상품당 **2장**(상품사진 + 라벨)이 쌍으로 옴.
+
+### ⚡ 빠른 모드 (토큰 절약 — 기본으로 이렇게 진행)
+- 상품당 사진 **2장**만 받음: ① 목업 없는 **정사각 상품사진** ② **원재료명+영양성분표** 라벨.
+- 크롭 결과를 매번 Read로 재확인하지 말 것(좌표만 믿고 진행, 애매할 때만 확인). 답변은 **짧게**(표 1줄 요약).
+- 여러 개는 한 번에 묶어 처리.
 
 ## 이 앱의 핵심 작업: "상품 추가"
 사용자가 **라벨 사진 + 상품 사진 + 상품명**을 보내면 →
@@ -19,13 +24,12 @@
 ## 배포 구조 (중요)
 - **Vercel이 배포하는 브랜치 = `main`.** 라이브 주소: https://foodon-nine.vercel.app/
 - 개발 브랜치 = **`claude/add-product-h4mq6z`** (매 상품마다 여기 커밋 후 `main`에 머지·푸시하는 게 기본 흐름)
-- 상품이 라이브에 보이려면 **`main`에 반영돼야 함.** 매번 아래 흐름으로 dev→main 반영:
+- 상품이 라이브에 보이려면 **`main`에 반영돼야 함.** 매번 아래 흐름으로 dev→main 반영(`DEV`=세션 지정 브랜치):
   ```bash
   git add -A && git commit -q -m "<상품명> 추가"
-  git push -u origin claude/add-product-h4mq6z
-  git checkout main && git pull --no-edit origin main
-  git merge --no-edit claude/add-product-h4mq6z && git push origin main
-  git checkout claude/add-product-h4mq6z
+  git push -u origin "$DEV"
+  git checkout main && git merge --no-edit "$DEV" && git push origin main
+  git checkout "$DEV"
   ```
 - 푸시 후 Vercel이 1~2분 뒤 자동 재배포. 캐시 때문에 안 보이면 Ctrl+Shift+R.
 
@@ -66,7 +70,9 @@
   ```jsonc
   "ingGroups": [ { "name": "찰곤약떡볶이떡", "ing": [["쌀가루(쌀:외국산)", []], ...] }, { "name": "양념", "ing": [...] } ]
   ```
-- 카테고리(cat) 사용값: 음료·과자·초콜릿·면류·라면·간편식·두부·묵·유제품·축산·델리·수산가공·농산가공·당류·조미·양념·소스·반찬·떡류·빵·만두 등 (앱이 자동 그룹핑).
+- 카테고리(cat) 사용값: 음료·과자·초콜릿·면류·라면·간편식·두부·묵·유제품·축산·델리·수산가공·농산가공·당류·조미·양념·소스·반찬·떡류·빵·만두 등 (앱이 자동 그룹핑). 잼·땅콩버터·누텔라 등 **스프레드류는 `소스`**. 과일통조림·옥수수통조림은 **`농산가공`**. 참기름·올리브유·소금·설탕(당류)·다시다·부침가루 등 조리기초는 **`조미`**.
+- **`nutrition`은 optional.** 라벨에 영양표가 없으면 아예 빼거나, 열량만 아는 경우 `"rows": []`로 두면 앱이 총내용량+kcal만 표시(매크로 조작 금지).
+- **쿠팡 구매버튼**: 상품 객체에 `"shopUrl":"https://link.coupang.com/..."` 넣으면 상세페이지에 "실제 상품 보러가기" 버튼 + 쿠팡 파트너스 안내문구가 자동 표시(앱이 URL에 `coupang` 있으면 파트너스 문구, 아니면 일반 제휴문구).
 
 ## 상품명 규칙
 - **모든 상품명 뒤에 용량을 `(80g)` 형식으로** 붙인다. (예: `(300g)`, `(960ml)`, `(120g×5)`, `(2인분)(403.7g)`)
@@ -98,10 +104,23 @@ cv=Image.new('RGB',(s,s),(255,255,255)); cv.paste(c,((s-w2)//2,(s-h2)//2))
 cv.save(OUT,quality=95)
 ```
 
+**3) 색깔 배경 제거 (박스 무늬 보존)** — 배경이 크림/하늘색 등으로 살짝 물든 패키지샷일 때. flood-fill을 전체에 쓰면 박스 무늬까지 먹으므로, **테두리와 연결된 배경 영역만** 흰색화:
+```python
+import numpy as np; from PIL import Image; from scipy import ndimage
+a=np.asarray(Image.open(SRC).convert('RGB')).astype(int); h,w,_=a.shape
+r,g,b=a[:,:,0],a[:,:,1],a[:,:,2]
+bg=((r>232)&(g>232)&(b>232)) | ((b>190)&(g>185)&(b>=r)&(r>150)&(abs(b-r)<70))  # 흰색 or 옅은 배경색(조정)
+lbl,_=ndimage.label(bg)
+border=set(lbl[0]).union(lbl[-1]).union(lbl[:,0]).union(lbl[:,-1]); border.discard(0)
+out=a.copy(); out[np.isin(lbl,list(border))]=[255,255,255]
+Image.fromarray(out.astype('uint8')).save(OUT,quality=95)
+```
+
 **크롭 시 공통 주의**
-- 사진에 **폰 크기표시 목업**(로켓프레시 등)이나 **여러 개 진열/멀티팩 낱개**가 같이 보이면 → **상품 하나만** 남기고 크롭.
+- 사진에 **폰 UI(상단 상태바·"상세이미지"·하단 썸네일)**, **폰 크기표시 목업**(로켓프레시 등), **여러 개 진열/멀티팩 낱개**가 같이 보이면 → **상품 하나만** 남기고 크롭.
+- 이미 깨끗한 정사각 상품사진(`.jpeg`)이면 크롭 없이 **흰 정사각 캔버스 중앙정렬**만.
 - 상품 이미지 파일과 라벨 이미지 파일을 헷갈리지 말 것(라벨엔 영양성분표·바코드가 큼).
-- 결과를 Read로 눈으로 확인 후 `public/products/`로 복사.
+- 빠른 모드에선 결과 재확인 열람 생략(애매할 때만 Read). 파일은 바로 `public/products/`에 저장.
 - 이미지 좌표는 표시 크기(예 921×2000) 기준 분수로 잡고 crop 시 원본 크기에 곱함.
 
 ## 코드 주의사항
@@ -116,7 +135,7 @@ git pull --no-edit origin <branch>   # 충돌 예방
 git commit -q -m "<상품명> 추가"
 git push -u origin <branch>          # 네트워크 실패 시 2s→4s→8s→16s 백오프 재시도
 ```
-- 개발은 `claude/add-product-h4mq6z`, 라이브 반영은 `main` (위 "배포 구조"의 dev→main 흐름 사용).
+- 개발은 **세션 지정 dev 브랜치**, 라이브 반영은 `main` (위 "배포 구조"의 dev→main 흐름 사용).
 - **API 키(data.go.kr / 식품안전나라)는 절대 커밋 금지**(환경변수로만). 비밀번호처럼 취급.
 
 ## 카테고리(cat) 분류 감 (실제 적용 예)
