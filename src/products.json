@@ -68191,7 +68191,6 @@
   "name": "샘트리 맛병아리콩 오리지널 (20g×20)",
   "brand": "샘트리",
   "cat": "과자",
-  "emoji": "🫛",
   "ing": [
    [
     "병아리콩 97.5%",
@@ -68261,7 +68260,8 @@
     ]
    ]
   },
-  "reviews": []
+  "reviews": [],
+  "img": "/products/samtree-chickpea-400.jpg"
  },
  {
   "id": 502,
