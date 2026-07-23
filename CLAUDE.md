@@ -4,7 +4,7 @@
 이 파일은 **새 세션이 바로 이어받아 상품을 추가**할 수 있게 정리한 규칙서예요.
 
 ## 현재 상태 (이어받을 때 먼저 확인)
-- 총 상품 **537개** (`src/products.json`), 다음 `id`는 **550**부터. (실제 값은 `python3 -c "import json;d=json.load(open('src/products.json'));print(len(d),max(x['id'] for x in d))"`로 확인)
+- 총 상품 **539개** (`src/products.json`), 다음 `id`는 **552**부터. (실제 값은 `python3 -c "import json;d=json.load(open('src/products.json'));print(len(d),max(x['id'] for x in d))"`로 확인)
 - 개발 브랜치 = **세션마다 지정됨**(예: `claude/product-addition-continue-*`) → 커밋 후 **`main`에도 머지·푸시**해야 라이브 반영. (배포 대상은 항상 `main`)
 - 이미지 업로드 경로: `/root/.claude/uploads/<세션ID>/` (사용자가 `@경로`로 보내줌). 보통 상품당 **2장**(상품사진 + 라벨)이 쌍으로 옴.
 
@@ -124,7 +124,7 @@ Image.fromarray(out.astype('uint8')).save(OUT,quality=95)
 - 사진에 **폰 UI(상단 상태바·"상세이미지"·하단 썸네일)**, **폰 크기표시 목업**(로켓프레시 등), **여러 개 진열/멀티팩 낱개**가 같이 보이면 → **상품 하나만** 남기고 크롭.
 - 이미 깨끗한 정사각 상품사진(`.jpeg`)이면 크롭 없이 **흰 정사각 캔버스 중앙정렬**만.
 - 상품 이미지 파일과 라벨 이미지 파일을 헷갈리지 말 것(라벨엔 영양성분표·바코드가 큼).
-- 빠른 모드에선 결과 재확인 열람 생략(애매할 때만 Read). 파일은 바로 `public/products/`에 저장.
+- **크롭 후 반드시 `Read`로 확인**(위 "크롭 필수 규칙" 참고). 확인 뒤 `public/products/`에 저장.
 - 이미지 좌표는 표시 크기(예 921×2000) 기준 분수로 잡고 crop 시 원본 크기에 곱함.
 
 ## 코드 주의사항
