@@ -56932,5 +56932,30 @@
    ]
   },
   "reviews": []
+ },
+ {
+  "id": 421,
+  "name": "자연지인 여주 돼지감자차 티백 (1g×50T)",
+  "brand": "자연지인",
+  "cat": "음료",
+  "emoji": "🍵",
+  "img": "/products/jayeonzin_yeoju_dwaejigamja_tea_50t.jpg",
+  "ing": [
+   [
+    "여주(국내산) 50%",
+    []
+   ],
+   [
+    "돼지감자(국내산) 50%",
+    []
+   ]
+  ],
+  "contains": [],
+  "facility": [
+   "대두",
+   "메밀",
+   "땅콩"
+  ],
+  "reviews": []
  }
 ]
