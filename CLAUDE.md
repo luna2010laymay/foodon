@@ -4,7 +4,7 @@
 이 파일은 **새 세션이 바로 이어받아 상품을 추가**할 수 있게 정리한 규칙서예요.
 
 ## 현재 상태 (이어받을 때 먼저 확인)
-- 총 상품 **529개** (`src/products.json`), 다음 `id`는 **542**부터. (실제 값은 `python3 -c "import json;d=json.load(open('src/products.json'));print(len(d),max(x['id'] for x in d))"`로 확인)
+- 총 상품 **531개** (`src/products.json`), 다음 `id`는 **544**부터. (실제 값은 `python3 -c "import json;d=json.load(open('src/products.json'));print(len(d),max(x['id'] for x in d))"`로 확인)
 - 개발 브랜치 = **세션마다 지정됨**(예: `claude/product-addition-continue-*`) → 커밋 후 **`main`에도 머지·푸시**해야 라이브 반영. (배포 대상은 항상 `main`)
 - 이미지 업로드 경로: `/root/.claude/uploads/<세션ID>/` (사용자가 `@경로`로 보내줌). 보통 상품당 **2장**(상품사진 + 라벨)이 쌍으로 옴.
 
