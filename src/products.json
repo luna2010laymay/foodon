@@ -25458,7 +25458,7 @@
     "id": 186,
     "name": "사조참치 살코기 (150g×4)",
     "brand": "사조",
-    "cat": "수산가공",
+    "cat": "통조림",
     "emoji": "🥫",
     "img": "/products/sajo_chamchi_salcogi.jpg",
     "ing": [
@@ -54295,7 +54295,7 @@
     "id": 394,
     "name": "사조 마일드참치 (85g×4)",
     "brand": "사조",
-    "cat": "수산가공",
+    "cat": "통조림",
     "emoji": "🐟",
     "img": "/products/sajo_mild_chamchi.jpg",
     "ing": [
@@ -54400,7 +54400,7 @@
     "id": 395,
     "name": "사조 고추참치 (85g×4)",
     "brand": "사조",
-    "cat": "수산가공",
+    "cat": "통조림",
     "emoji": "🌶️",
     "img": "/products/sajo_gochu_chamchi.jpg",
     "ing": [
@@ -54501,7 +54501,7 @@
     "id": 396,
     "name": "유동 꽁치 (400g)",
     "brand": "유동",
-    "cat": "수산가공",
+    "cat": "통조림",
     "emoji": "🐟",
     "img": "/products/yudong_kkongchi.jpg",
     "ing": [
@@ -54794,7 +54794,7 @@
     "id": 399,
     "name": "유동 자연산 골뱅이 (300g)",
     "brand": "유동",
-    "cat": "수산가공",
+    "cat": "통조림",
     "emoji": "🐚",
     "img": "/products/yudong_jayeonsan_golbaengi.jpg",
     "ing": [
@@ -55154,7 +55154,7 @@
     "id": 403,
     "name": "동원참치 살코기 (250g)",
     "brand": "동원",
-    "cat": "수산가공",
+    "cat": "통조림",
     "emoji": "🐟",
     "img": "/products/dongwon_chamchi_salkogi.jpg",
     "ing": [
@@ -55950,7 +55950,7 @@
     "id": 411,
     "name": "동원 자연산 꽁치 (300g)",
     "brand": "동원",
-    "cat": "수산가공",
+    "cat": "통조림",
     "emoji": "🐟",
     "img": "/products/dongwon_jayeonsan_kkongchi.jpg",
     "ing": [
@@ -56683,7 +56683,7 @@
     "id": 419,
     "name": "동원 저스트 황도 슬라이스 (400g)",
     "brand": "동원",
-    "cat": "농산가공",
+    "cat": "통조림",
     "emoji": "🍑",
     "img": "/products/dongwon_just_hwangdo_slice.jpg",
     "ing": [
@@ -95284,6 +95284,80 @@
           "단백질",
           "2 g",
           "4%"
+        ]
+      ]
+    },
+    "reviews": []
+  },
+  {
+    "id": 728,
+    "name": "산마르노 홀 필드 토마토 (2500g)(고형량 1500g)",
+    "brand": "산마르노",
+    "cat": "통조림",
+    "emoji": "🍅",
+    "img": "/products/sanmarno-whole-peeled-tomato-2500.jpg",
+    "ing": [
+      [
+        "토마토",
+        []
+      ],
+      [
+        "토마토주스",
+        []
+      ],
+      [
+        "구연산",
+        [
+          "additive"
+        ]
+      ]
+    ],
+    "contains": [
+      "토마토"
+    ],
+    "nutrition": {
+      "serving": "100 g",
+      "kcal": 20,
+      "rows": [
+        [
+          "나트륨",
+          "5 mg",
+          "0%"
+        ],
+        [
+          "탄수화물",
+          "4 g",
+          "1%"
+        ],
+        [
+          "당류",
+          "2 g",
+          "2%"
+        ],
+        [
+          "지방",
+          "0 g",
+          "0%"
+        ],
+        [
+          "트랜스지방",
+          "0 g",
+          ""
+        ],
+        [
+          "포화지방",
+          "0 g",
+          "0%"
+        ],
+        [
+          "콜레스테롤",
+          "0 mg",
+          "0%"
+        ],
+        [
+          "단백질",
+          "1 g",
+          "2%"
         ]
       ]
     },
