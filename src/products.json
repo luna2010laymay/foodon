@@ -104876,7 +104876,7 @@
     "maker": "우천식품",
     "cat": "두부",
     "emoji": "🟨",
-    "img": "/products/dongwon_yubu_180.jpg",
+    "img": "/products/dongwon_yubu_180_fx.jpg",
     "ing": [
       [
         "대두 94.80%(외국산:미국,중국,캐나다 등)",
@@ -104971,7 +104971,7 @@
     "maker": "(주)태경에스티",
     "cat": "두부",
     "emoji": "🟨",
-    "img": "/products/kongdaum_slice_yubu.jpg",
+    "img": "/products/kongdaum_slice_yubu_fx.jpg",
     "ing": [
       [
         "대두 95.2%(외국산:미국,호주,캐나다 등)",
@@ -105663,7 +105663,7 @@
     "maker": "(주)신미씨앤에프",
     "cat": "두부",
     "emoji": "🟨",
-    "img": "/products/kimguwon_jangsu_yubu.jpg",
+    "img": "/products/kimguwon_jangsu_yubu_fx.jpg",
     "ing": [
       [
         "대두 93%(외국산:미국,캐나다,중국 등)",
@@ -105773,7 +105773,7 @@
     "maker": "(주)한미식품",
     "cat": "두부",
     "emoji": "🟨",
-    "img": "/products/sajo_naengdong_yubu.jpg",
+    "img": "/products/sajo_naengdong_yubu_fx.jpg",
     "ing": [
       [
         "대두 94.78%(외국산:미국,캐나다,중국 등)",
@@ -105876,7 +105876,7 @@
     "maker": "(주)두솔",
     "cat": "간편식",
     "emoji": "🍙",
-    "img": "/products/hansung_yubuchobap_baksa3.jpg",
+    "img": "/products/hansung_yubuchobap_baksa3_fx.jpg",
     "ingGroups": [
       {
         "name": "조미유부박사",
@@ -106106,7 +106106,7 @@
     "maker": "(주)신미씨앤에프",
     "cat": "간편식",
     "emoji": "🍙",
-    "img": "/products/hansung_50_yubuchobap.jpg",
+    "img": "/products/hansung_50_yubuchobap_fx.jpg",
     "ingGroups": [
       {
         "name": "조미제로유부",
@@ -106351,7 +106351,7 @@
     "maker": "JIAMUSI JIAYUAN FOODS CO.,LTD (중국)",
     "cat": "면류",
     "emoji": "🍜",
-    "img": "/products/fenou_bunmoja.jpg",
+    "img": "/products/fenou_bunmoja_fx.jpg",
     "ing": [
       [
         "카사바전분",
@@ -106799,7 +106799,7 @@
     "maker": "(주)언양전통식품",
     "cat": "양념",
     "emoji": "🫘",
-    "img": "/products/unyang_doenjang.jpg",
+    "img": "/products/unyang_doenjang_fx.jpg",
     "ing": [
       [
         "대두 98.06%(국산)",
@@ -106831,7 +106831,7 @@
     "maker": "(주)그린에프엠",
     "cat": "양념",
     "emoji": "🌶️",
-    "img": "/products/mynormal_chogochujang.jpg",
+    "img": "/products/mynormal_chogochujang_fx.jpg",
     "ing": [
       [
         "고추장[고춧가루(국내산),한식간장(대두:국내산),알룰로스,멸치액젓,메주가루]",
@@ -107000,7 +107000,7 @@
     "maker": "(주)제이엔제이푸드",
     "cat": "양념",
     "emoji": "🌶️",
-    "img": "/products/sempio_bibimjang_jeodang.jpg",
+    "img": "/products/sempio_bibimjang_jeodang_fx.jpg",
     "ing": [
       [
         "동치미국물[동치미엑기스(동치미농축액(무:국산)),정제소금(함수:국산)]",
@@ -107204,7 +107204,7 @@
     "maker": "(주)다둥푸드",
     "cat": "조미",
     "emoji": "🦀",
-    "img": "/products/hongyeongui_daege_baekganjang.jpg",
+    "img": "/products/hongyeongui_daege_baekganjang_fx.jpg",
     "ing": [
       [
         "붉은대게추출액 70%[붉은대게(국내산)/고형분 4.4%이상]",
@@ -107353,7 +107353,7 @@
     "maker": "특별한맛(주)",
     "cat": "양념",
     "emoji": "🫘",
-    "img": "/products/mynormal_jeodang_ssamjang.jpg",
+    "img": "/products/mynormal_jeodang_ssamjang_fx.jpg",
     "ing": [
       [
         "한식된장(국산)[한식메주,정제수,천일염]",
@@ -107472,7 +107472,7 @@
     "maker": "샘표식품(주)",
     "cat": "조미",
     "emoji": "🥢",
-    "img": "/products/sempio_matganjang.jpg",
+    "img": "/products/sempio_matganjang_fx.jpg",
     "ing": [
       [
         "정제수",
@@ -107601,7 +107601,7 @@
     "maker": "생명물푸드(주)",
     "cat": "조미",
     "emoji": "🥢",
-    "img": "/products/sinangchon_saengmyeongmul_ganjang.jpg",
+    "img": "/products/sinangchon_saengmyeongmul_ganjang_fx.jpg",
     "ing": [
       [
         "정제수",
@@ -107718,7 +107718,7 @@
     "maker": "농업회사법인(주)길전통식품",
     "cat": "양념",
     "emoji": "🫘",
-    "img": "/products/yangsan_gil_doenjang.jpg",
+    "img": "/products/yangsan_gil_doenjang_fx.jpg",
     "ing": [
       [
         "대두(국산) 73%",
@@ -107755,7 +107755,7 @@
     "maker": "(주)시아스",
     "cat": "양념",
     "emoji": "🥜",
-    "img": "/products/pulmuone_gososs_ssamjang.jpg",
+    "img": "/products/pulmuone_gososs_ssamjang_fx.jpg",
     "ing": [
       [
         "된장(대두(외국산:미국,캐나다,호주 등),소맥분(밀:미국산,호주산),한식된장,정제소금,밀쌀)",
@@ -108083,7 +108083,7 @@
     "maker": "대상(주)",
     "cat": "양념",
     "emoji": "🌶️",
-    "img": "/products/chungjungone_cheongyangcho_ssamjang.jpg",
+    "img": "/products/chungjungone_cheongyangcho_ssamjang_fx.jpg",
     "ing": [
       [
         "된장(소맥분(밀:미국산,호주산),대두(외국산),정제소금,종국)",
@@ -108233,7 +108233,7 @@
     "maker": "대상(주)",
     "cat": "조미",
     "emoji": "🥢",
-    "img": "/products/chungjungone_dasima_ganjang.jpg",
+    "img": "/products/chungjungone_dasima_ganjang_fx.jpg",
     "ing": [
       [
         "정제수",
@@ -108617,7 +108617,7 @@
     "maker": "Kikkoman Food Tech Company (일본)",
     "cat": "조미",
     "emoji": "🥢",
-    "img": "/products/kikkoman_honzuyu.jpg",
+    "img": "/products/kikkoman_honzuyu_fx.jpg",
     "ing": [
       [
         "정제수",
@@ -108754,7 +108754,7 @@
     "maker": "대상(주)",
     "cat": "양념",
     "emoji": "🥬",
-    "img": "/products/chungjungone_yangnyeom_ssamjang.jpg",
+    "img": "/products/chungjungone_yangnyeom_ssamjang_fx.jpg",
     "ing": [
       [
         "된장{소맥분(밀:미국,호주산),대두(외국산),정제소금,종국}",
@@ -108894,7 +108894,7 @@
     "maker": "(주)선제",
     "cat": "소스",
     "emoji": "🥚",
-    "img": "/products/chungjungone_jangjorim_sauce.jpg",
+    "img": "/products/chungjungone_jangjorim_sauce_fx.jpg",
     "ing": [
       [
         "정제수",
@@ -109024,7 +109024,7 @@
     "maker": "샘표식품(주)",
     "cat": "조미",
     "emoji": "🥢",
-    "img": "/products/sempio_saemine_jinganjang.jpg",
+    "img": "/products/sempio_saemine_jinganjang_fx.jpg",
     "ing": [
       [
         "정제수",
@@ -109131,7 +109131,7 @@
     "maker": "대상(주)",
     "cat": "조미",
     "emoji": "🥢",
-    "img": "/products/chungjungone_ssiganjang_gold.jpg",
+    "img": "/products/chungjungone_ssiganjang_gold_fx.jpg",
     "ing": [
       [
         "정제수",
@@ -109272,7 +109272,7 @@
     "maker": "이금기(신회)식품유한공사 (중국)",
     "cat": "소스",
     "emoji": "🫘",
-    "img": "/products/leekumkee_hwangdujang.jpg",
+    "img": "/products/leekumkee_hwangdujang_fx.jpg",
     "ing": [
       [
         "정제수",
@@ -109395,7 +109395,7 @@
     "maker": "CJ제일제당(주)",
     "cat": "양념",
     "emoji": "🌶️",
-    "img": "/products/haechandle_saekomdalkom_chogochujang.jpg",
+    "img": "/products/haechandle_saekomdalkom_chogochujang_fx.jpg",
     "ing": [
       [
         "고추장 83.4%{기타과당,소맥분(밀:미국산,호주산),고추양념(중국산),정제소금,밀쌀}",
@@ -109491,7 +109491,7 @@
     "maker": "대상(주)",
     "cat": "양념",
     "emoji": "🥬",
-    "img": "/products/chungjungone_yangnyeom_deumbuk_ssamjang.jpg",
+    "img": "/products/chungjungone_yangnyeom_deumbuk_ssamjang_fx.jpg",
     "ing": [
       [
         "된장 50%{소맥분(밀:미국,호주산),대두(외국산),정제소금,종국}",
@@ -109623,7 +109623,7 @@
     "maker": "순창문옥례식품(주)",
     "cat": "조미",
     "emoji": "🥢",
-    "img": "/products/mun_okrye_jinganjang.jpg",
+    "img": "/products/mun_okrye_jinganjang_fx.jpg",
     "ing": [
       [
         "한식간장 40%[한식메주(대두:국산),정제수,천일염(국산)]",
@@ -110312,7 +110312,7 @@
     "maker": "샘표식품(주)",
     "cat": "조미",
     "emoji": "🦀",
-    "img": "/products/sempio_honggae_ganjang.jpg",
+    "img": "/products/sempio_honggae_ganjang_fx.jpg",
     "ing": [
       [
         "홍게발효장[홍게발효액{홍엑기스(홍게:국산),굴엑기스(굴:국산),건다시마분(다시마:국산)},탈지대두(외국산),소맥,천일염,정제소금]",
@@ -110393,7 +110393,7 @@
     "maker": "대상(주)",
     "cat": "양념",
     "emoji": "🫘",
-    "img": "/products/chungjungone_bon_doenjang.jpg",
+    "img": "/products/chungjungone_bon_doenjang_fx.jpg",
     "ing": [
       [
         "된장{대두(외국산),현미(외국산),메주,정제소금,한식된장,종국}",
@@ -110467,7 +110467,7 @@
     "maker": "CJ제일제당(주)",
     "cat": "양념",
     "emoji": "🌶️",
-    "img": "/products/haechandle_gungjungsik_bokkeum_gochujang.jpg",
+    "img": "/products/haechandle_gungjungsik_bokkeum_gochujang_fx.jpg",
     "ing": [
       [
         "고추장 74.4%{물엿,소맥분(밀:미국산,호주산),고추양념(중국산),정제소금,혼합미분}",
@@ -110619,7 +110619,7 @@
     "maker": "샘표식품(주)",
     "cat": "양념",
     "emoji": "🥬",
-    "img": "/products/sempio_sigolsik_ssamtojang.jpg",
+    "img": "/products/sempio_sigolsik_ssamtojang_fx.jpg",
     "ing": [
       [
         "토장숙성물[대두(외국산),천일염(호주산),종국]",
@@ -110760,7 +110760,7 @@
     "maker": "대상(주)",
     "cat": "양념",
     "emoji": "🌶️",
-    "img": "/products/chungjungone_taeyangcho_gochujang_2kg.jpg",
+    "img": "/products/chungjungone_taeyangcho_gochujang_2kg_fx.jpg",
     "ing": [
       [
         "고추양념(고춧가루,정제소금,마늘,양파/중국산)",
@@ -110881,7 +110881,7 @@
     "maker": "샘표식품(주)",
     "cat": "조미",
     "emoji": "🥢",
-    "img": "/products/sempio_jinganjang_gold_f3.jpg",
+    "img": "/products/sempio_jinganjang_gold_f3_fx.jpg",
     "ing": [
       [
         "정제수",
