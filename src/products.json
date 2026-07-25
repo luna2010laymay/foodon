@@ -90833,5 +90833,43 @@
       "잣"
     ],
     "reviews": []
+  },
+  {
+    "id": 690,
+    "name": "영심 쇠미역 (300g)",
+    "brand": "영심",
+    "cat": "수산가공",
+    "emoji": "🌿",
+    "img": "/products/youngsim-soemiyeok-300.jpg",
+    "ing": [
+      [
+        "쇠미역 98%(국산)",
+        []
+      ],
+      [
+        "천일염(호주산)",
+        []
+      ],
+      [
+        "정제염(국내산)",
+        []
+      ]
+    ],
+    "reviews": []
+  },
+  {
+    "id": 691,
+    "name": "프롬제주 제주산 건유채나물 (70g)",
+    "brand": "프롬제주",
+    "cat": "농산가공",
+    "emoji": "🌿",
+    "img": "/products/fromjeju-dried-rapeseed-greens-70.jpg",
+    "ing": [
+      [
+        "유채나물 100%(제주산)",
+        []
+      ]
+    ],
+    "reviews": []
   }
 ]
