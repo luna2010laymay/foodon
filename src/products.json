@@ -127650,5 +127650,135 @@
     "contains": [],
     "facility": [],
     "reviews": []
+  },
+  {
+    "id": 989,
+    "name": "냉동 브로콜리 믹스 (1kg)",
+    "brand": "신광",
+    "maker": "Laiyang Huatai Foodstuff Co.,Ltd (중국)",
+    "cat": "농산가공",
+    "emoji": "🥦",
+    "img": "/products/frozen_broccoli_mix.jpg",
+    "ing": [
+      [
+        "당근 34%(중국산)",
+        []
+      ],
+      [
+        "컬리플라워 33%(중국산)",
+        []
+      ],
+      [
+        "브로콜리 33%(중국산)",
+        []
+      ]
+    ],
+    "contains": [],
+    "facility": [
+      "대두"
+    ],
+    "reviews": []
+  },
+  {
+    "id": 990,
+    "name": "냉동 다진마늘 (1kg)",
+    "brand": "신광",
+    "maker": "(주)신광",
+    "cat": "농산가공",
+    "emoji": "🧄",
+    "img": "/products/frozen_dajin_maneul.jpg",
+    "ing": [
+      [
+        "마늘 100%(중국산)",
+        []
+      ]
+    ],
+    "contains": [],
+    "facility": [],
+    "nutrition": {
+      "serving": "100 g",
+      "kcal": 51,
+      "rows": []
+    },
+    "reviews": []
+  },
+  {
+    "id": 991,
+    "name": "신성에프엔비 삼계탕 재료복 (100g)",
+    "brand": "신성에프엔비",
+    "maker": "신성에프엔비(주)",
+    "cat": "농산가공",
+    "emoji": "🍲",
+    "img": "/products/sinseong_samgyetang_jaeryo.jpg",
+    "ing": [
+      [
+        "뽕나무어린가지(국내산) 33%",
+        []
+      ],
+      [
+        "음나무줄기(국내산) 27%",
+        []
+      ],
+      [
+        "오갈피나무줄기껍질(국내산) 22%",
+        []
+      ],
+      [
+        "헛개나무줄기(국내산) 11%",
+        []
+      ],
+      [
+        "황기(국내산) 5%",
+        []
+      ],
+      [
+        "참당귀뿌리(국내산) 2%",
+        []
+      ]
+    ],
+    "contains": [],
+    "facility": [],
+    "reviews": []
+  },
+  {
+    "id": 992,
+    "name": "데메트라 냉동 그린빈스 (1kg)",
+    "brand": "데메트라",
+    "maker": "(주)신광",
+    "cat": "농산가공",
+    "emoji": "🫛",
+    "img": "/products/demetra_green_beans.jpg",
+    "ing": [
+      [
+        "그린빈스 100%(중국산)",
+        []
+      ]
+    ],
+    "contains": [],
+    "facility": [],
+    "reviews": []
+  },
+  {
+    "id": 993,
+    "name": "냉동 삶은 감자 (1kg)",
+    "brand": "신광",
+    "maker": "(주)신광",
+    "cat": "농산가공",
+    "emoji": "🥔",
+    "img": "/products/frozen_salmeun_gamja.jpg",
+    "ing": [
+      [
+        "감자 100%(중국산)",
+        []
+      ]
+    ],
+    "contains": [],
+    "facility": [],
+    "nutrition": {
+      "serving": "100 g",
+      "kcal": 95,
+      "rows": []
+    },
+    "reviews": []
   }
 ]
