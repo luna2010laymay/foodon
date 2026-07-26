@@ -127780,5 +127780,151 @@
       "rows": []
     },
     "reviews": []
+  },
+  {
+    "id": 994,
+    "name": "데메트라 냉동 표고버섯 슬라이스 (1kg)",
+    "brand": "데메트라",
+    "maker": "(주)신광",
+    "cat": "농산가공",
+    "emoji": "🍄",
+    "img": "/products/demetra_pyogo_slice.jpg",
+    "ing": [
+      [
+        "표고버섯 100%(중국산)",
+        []
+      ]
+    ],
+    "contains": [],
+    "facility": [],
+    "reviews": []
+  },
+  {
+    "id": 995,
+    "name": "곰곰 간편한 찌개용 채소 (500g)",
+    "brand": "곰곰",
+    "maker": "씨피엘비(주)",
+    "cat": "농산가공",
+    "emoji": "🥬",
+    "img": "/products/gomgom_jjigae_chaeso.jpg",
+    "ing": [
+      [
+        "감자 30%(국산)",
+        []
+      ],
+      [
+        "애호박 22%(국산)",
+        []
+      ],
+      [
+        "양파 14%(국산)",
+        []
+      ],
+      [
+        "표고버섯 10%(국산)",
+        []
+      ],
+      [
+        "무 10%(국산)",
+        []
+      ],
+      [
+        "대파 10%(국산)",
+        []
+      ],
+      [
+        "청고추 2%(국산)",
+        []
+      ],
+      [
+        "홍고추 2%(국산)",
+        []
+      ]
+    ],
+    "contains": [],
+    "facility": [],
+    "reviews": []
+  },
+  {
+    "id": 996,
+    "name": "냉동 찐 단호박 (1kg)",
+    "brand": "신광",
+    "maker": "(주)신광",
+    "cat": "농산가공",
+    "emoji": "🎃",
+    "img": "/products/frozen_jjin_danhobak.jpg",
+    "ing": [
+      [
+        "단호박 100%(중국산)",
+        []
+      ]
+    ],
+    "contains": [],
+    "facility": [],
+    "nutrition": {
+      "serving": "100 g",
+      "kcal": 31,
+      "rows": []
+    },
+    "reviews": []
+  },
+  {
+    "id": 997,
+    "name": "마당발 냉동 삼색피망 (1kg)",
+    "brand": "마당발",
+    "maker": "(주)마당발글로벌",
+    "cat": "농산가공",
+    "emoji": "🫑",
+    "img": "/products/madangbal_samsaek_pimang.jpg",
+    "ing": [
+      [
+        "삼색피망(빨강·노랑·초록) 100%(중국산)",
+        []
+      ]
+    ],
+    "contains": [],
+    "facility": [],
+    "reviews": []
+  },
+  {
+    "id": 998,
+    "name": "팜조아 뚝딱! 청양고추 (400g)",
+    "brand": "팜조아",
+    "maker": "(주)팜조아",
+    "cat": "농산가공",
+    "emoji": "🌶️",
+    "img": "/products/farmjoa_cheongyang_gochu.jpg",
+    "ing": [
+      [
+        "청양고추 100%(국내산)",
+        []
+      ]
+    ],
+    "contains": [],
+    "facility": [],
+    "reviews": []
+  },
+  {
+    "id": 999,
+    "name": "냉동 당근 (1kg)",
+    "brand": "신광",
+    "maker": "(주)신광",
+    "cat": "농산가공",
+    "emoji": "🥕",
+    "img": "/products/frozen_danggeun.jpg",
+    "ing": [
+      [
+        "당근 100%(중국산)",
+        []
+      ]
+    ],
+    "contains": [],
+    "facility": [],
+    "nutrition": {
+      "serving": "100 g",
+      "kcal": 40,
+      "rows": []
+    },
+    "reviews": []
   }
 ]
