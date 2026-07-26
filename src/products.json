@@ -127614,5 +127614,41 @@
     "contains": [],
     "facility": [],
     "reviews": []
+  },
+  {
+    "id": 987,
+    "name": "곰곰 냉동대파 (500g)",
+    "brand": "곰곰",
+    "maker": "농업회사법인(주)그린피아",
+    "cat": "농산가공",
+    "emoji": "🌿",
+    "img": "/products/gomgom_frozen_daepa.jpg",
+    "ing": [
+      [
+        "대파 100%(국산)",
+        []
+      ]
+    ],
+    "contains": [],
+    "facility": [],
+    "reviews": []
+  },
+  {
+    "id": 988,
+    "name": "곰곰 냉동 양파슬라이스 (500g)",
+    "brand": "곰곰",
+    "maker": "농업회사법인(주)그린피아",
+    "cat": "농산가공",
+    "emoji": "🧅",
+    "img": "/products/gomgom_frozen_yangpa_slice.jpg",
+    "ing": [
+      [
+        "양파 100%(국산)",
+        []
+      ]
+    ],
+    "contains": [],
+    "facility": [],
+    "reviews": []
   }
 ]
