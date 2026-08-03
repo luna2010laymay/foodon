@@ -129196,5 +129196,98 @@
     "reviews": [],
     "shopUrl": "https://link.coupang.com/a/fUiT0dSV8S",
     "img": "/products/dietorelle_orange_lemon.jpg"
+  },
+  {
+    "id": 1018,
+    "name": "풀무원 목초 달걀 (15개)(780g)",
+    "brand": "풀무원",
+    "cat": "축산",
+    "emoji": "🥚",
+    "img": "/products/mokcho_dalgyal.jpg",
+    "ing": [
+      [
+        "달걀(국산)",
+        [
+          "allergy",
+          "animal"
+        ]
+      ]
+    ],
+    "contains": [
+      "달걀"
+    ],
+    "nutrition": {
+      "serving": "가식부 668.5 g (총 780 g·15개)",
+      "kcal": 885,
+      "rows": [
+        [
+          "나트륨",
+          "1,030 mg",
+          "52%"
+        ],
+        [
+          "탄수화물",
+          "15 g",
+          "5%"
+        ],
+        [
+          "당류",
+          "2 g",
+          "2%"
+        ],
+        [
+          "지방",
+          "56 g",
+          "104%"
+        ],
+        [
+          "트랜스지방",
+          "0 g",
+          ""
+        ],
+        [
+          "포화지방",
+          "15 g",
+          "100%"
+        ],
+        [
+          "콜레스테롤",
+          "2,455 mg",
+          "818%"
+        ],
+        [
+          "단백질",
+          "80 g",
+          "145%"
+        ],
+        [
+          "엽산",
+          "625.7 μg DFE",
+          "156%"
+        ]
+      ]
+    },
+    "reviews": []
+  },
+  {
+    "id": 1019,
+    "name": "자연애찬 동물복지 무항생제 유정란 (15개입)(780g)",
+    "brand": "자연애찬",
+    "cat": "축산",
+    "emoji": "🥚",
+    "img": "/products/jayeonaechan_yujeongran.jpg",
+    "ing": [
+      [
+        "달걀(국산)",
+        [
+          "allergy",
+          "animal"
+        ]
+      ]
+    ],
+    "contains": [
+      "달걀"
+    ],
+    "reviews": []
   }
 ]
