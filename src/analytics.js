@@ -8,7 +8,9 @@ import posthog from "posthog-js";
    - 키가 없으면 모든 함수가 조용히 무시됨(로컬/미설정 배포에서 에러 없음)
    ===================================================================== */
 
-const KEY = import.meta.env.VITE_POSTHOG_KEY;
+// phc_ 키는 공개 웹앱에 넣도록 만든 "쓰기 전용" 키라 소스에 있어도 안전(이벤트 전송만 가능, 데이터 열람 불가).
+// Vercel 환경변수(VITE_POSTHOG_KEY)를 넣으면 그 값이 우선 적용됨.
+const KEY = import.meta.env.VITE_POSTHOG_KEY || "phc_yRwFsUoseVtuNU8Aq6kf6ktxatcCDknk4ThfMvBuhTe9";
 const HOST = import.meta.env.VITE_POSTHOG_HOST || "https://us.i.posthog.com";
 let ready = false;
 
