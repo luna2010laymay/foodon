@@ -11,7 +11,7 @@ const C = { ink: "#23291F", sub: "#6E7468", line: "#E5E2D9", sage: "#2F6D54", so
 const OPTS = [
   { key: "need", label: "완전 필요한 앱이에요, 나오면 쓸래요! 🥰", tone: "#2F6D54" },
   { key: "improve", label: "쓸 것 같아요, 조금만 보완되면 좋겠어요 🙂", tone: "#8A6D2F" },
-  { key: "maybe_not", label: "아직은 꼭 필요하진 않은 것 같아요 🌱", tone: "#8A9086" },
+  { key: "maybe_not", label: "꼭 필요하진 않은 것 같아요 🌱", tone: "#8A9086" },
 ];
 
 export default function CreatorFeedback({ product }) {
