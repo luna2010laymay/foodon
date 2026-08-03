@@ -55,10 +55,10 @@ const PAGES = [
     desc: ["알러지·채식·첨가물 조건으로", "내게 맞는 식품만 골라서 확인해요."],
     hero: (
       <>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 9 }}>
-          <Toggle on>동물성 빼기</Toggle>
-          <Toggle on>알러지 빼기</Toggle>
-          <Toggle>첨가물 빼기</Toggle>
+        <div style={{ display: "flex", gap: 7 }}>
+          <ToggleBtn on label="🌱 동물성 No" color="#2E9E5B" />
+          <ToggleBtn on label="🚫 알러지 No" color={C.allergyTx} />
+          <ToggleBtn label="🧪 첨가물 No" color={C.addTx} />
         </div>
         <div style={{ background: "#fff", borderRadius: 18, padding: 16, marginTop: 20,
           boxShadow: "0 12px 28px -16px rgba(36,80,63,.36)" }}>
@@ -111,12 +111,12 @@ const PAGES = [
           </div>
         </div>
 
-        {/* 성분 분석 미니 */}
-        <div style={{ display: "flex", gap: 7, marginTop: 12 }}>
-          <Stat n="7" label="알레르기" bg={C.allergyBg} fg={C.allergyTx} />
-          <Stat n="5" label="첨가물" bg={C.addBg} fg={C.addTx} />
-          <Stat n="3" label="복합" bg={C.compBg} fg={C.compTx} />
-          <Stat n="2" label="동물성" bg={C.animalBg} fg={C.animalTx} />
+        {/* 성분 분석 미니 (상품페이지 타일과 동일) */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 6, marginTop: 12 }}>
+          <Stat lines={["알레르기", "주의성분"]} n="7" bg={C.allergyBg} fg={C.allergyTx} />
+          <Stat lines={["식품", "첨가물"]} n="5" bg={C.addBg} fg={C.addTx} />
+          <Stat lines={["복합성분"]} n="3" bg={C.compBg} fg={C.compTx} />
+          <Stat lines={["동물성", "성분"]} n="2" bg={C.animalBg} fg={C.animalTx} />
         </div>
       </>
     ),
@@ -129,20 +129,26 @@ function Chip({ children, bg = "#fff", bd = "#e7e3da", fg = "#3a3833" }) {
       border: "1px solid " + bd, borderRadius: 10, padding: "9px 13px" }}>{children}</span>
   );
 }
-function Toggle({ children, on }) {
+/* 앱의 실제 식단·알러지 토글 버튼(ToggleBtn)과 동일한 스타일 */
+function ToggleBtn({ label, on, color }) {
   return (
-    <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 14.5, fontWeight: on ? 700 : 600,
-      color: on ? "#fff" : "#4a463f", background: on ? "#2F6D54" : "#fff",
-      border: "1px solid " + (on ? "#2F6D54" : "rgba(34,32,28,.16)"), borderRadius: 12, padding: "10px 14px" }}>
-      {on && <Check />}{children}
+    <span style={{ flex: 1, display: "inline-flex", alignItems: "center", justifyContent: "center",
+      gap: 4, fontSize: 12.5, fontWeight: 700, padding: "9px 4px", borderRadius: 999,
+      whiteSpace: "nowrap", border: "1.5px solid " + (on ? color : C.line),
+      background: on ? color : "#fff", color: on ? "#fff" : C.ink }}>
+      {label}
+      <span style={{ width: 9, display: "inline-block", textAlign: "center" }}>{on ? "✓" : ""}</span>
     </span>
   );
 }
-function Stat({ n, label, bg, fg }) {
+function Stat({ lines, n, bg, fg }) {
   return (
-    <div style={{ flex: 1, background: bg, borderRadius: 12, padding: "10px 6px", textAlign: "center" }}>
-      <div style={{ fontSize: 18, fontWeight: 800, color: fg, lineHeight: 1 }}>{n}</div>
-      <div style={{ fontSize: 11, fontWeight: 600, color: fg, marginTop: 4, opacity: .85 }}>{label}</div>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+      gap: 4, aspectRatio: "1 / 1", background: bg, borderRadius: 14, padding: "6px 4px" }}>
+      <span style={{ fontSize: 11, fontWeight: 700, lineHeight: 1.18, textAlign: "center", color: fg, opacity: .92 }}>
+        {lines.map((ln, i) => (<span key={i} style={{ display: "block" }}>{ln}</span>))}
+      </span>
+      <span style={{ fontSize: 20, fontWeight: 800, lineHeight: 1, color: fg }}>{n}</span>
     </div>
   );
 }
