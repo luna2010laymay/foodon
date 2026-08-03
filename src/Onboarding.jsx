@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 /* =====================================================================
-   푸드온 온보딩 — 앱을 열 때마다 매번 노출
+   푸드온 온보딩 — 앱을 열 때마다 매번 노출 (3페이지)
    - "시작하기" 또는 "건너뛰기"를 누르면 그 세션에서만 닫힘
    - 새로고침·재접속하면 다시 나타남 (저장 안 함)
    ===================================================================== */
@@ -11,6 +11,11 @@ const C = {
   sub: "#6E7468",
   sage: "#2F6D54",
   line: "rgba(34,32,28,.16)",
+  // 앱 성분 태그 색과 맞춤
+  allergyBg: "#FBE6D2", allergyTx: "#C0692A",
+  addBg: "#E7EDF1", addTx: "#4A6373",
+  animalBg: "#E9E5F0", animalTx: "#5E5478",
+  compBg: "#EAE4D7", compTx: "#7A6A50",
 };
 
 function Check({ size = 15, stroke = "#fff", sw = 4 }) {
@@ -24,7 +29,7 @@ function Check({ size = 15, stroke = "#fff", sw = 4 }) {
 const PAGES = [
   {
     title: ["성분으로 검색해서", "직접 골라요"],
-    desc: ["먹고 싶은 식품을 성분으로 찾아보고,", "내게 필요한 정보로 직접 확인해요."],
+    desc: ["내가 먹고 싶은 식품을", "전성분으로 찾아보고 직접 확인해요."],
     hero: (
       <>
         <div style={{ display: "flex", alignItems: "center", gap: 10, background: "#fff", borderRadius: 16,
@@ -36,10 +41,10 @@ const PAGES = [
           <span style={{ fontSize: 16, color: "#8a857b" }}>그래놀라</span>
         </div>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 9, marginTop: 20 }}>
-          <Chip>#귀리</Chip>
-          <Chip bg="#f4e8d3" bd="#e6d2a8" fg="#95672b">#대두 · 알러지</Chip>
-          <Chip bg="#e9ebd2" bd="#d2d7ac" fg="#69763a">#꿀 · 동물성</Chip>
-          <Chip>#아몬드</Chip>
+          <Chip>귀리</Chip>
+          <Chip bg={C.allergyBg} bd="#f0d3b6" fg={C.allergyTx}>대두 · 알러지</Chip>
+          <Chip bg={C.animalBg} bd="#dcd4e8" fg={C.animalTx}>꿀 · 동물성</Chip>
+          <Chip>아몬드</Chip>
         </div>
         <ResultCard emoji="🥣" sub="오트빌 · 시리얼" name="오리지널 그래놀라" />
       </>
@@ -51,9 +56,9 @@ const PAGES = [
     hero: (
       <>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 9 }}>
-          <Toggle on>동물성 No</Toggle>
-          <Toggle on>알러지 No</Toggle>
-          <Toggle>첨가물 No</Toggle>
+          <Toggle on>동물성 빼기</Toggle>
+          <Toggle on>알러지 빼기</Toggle>
+          <Toggle>첨가물 빼기</Toggle>
         </div>
         <div style={{ background: "#fff", borderRadius: 18, padding: 16, marginTop: 20,
           boxShadow: "0 12px 28px -16px rgba(36,80,63,.36)" }}>
@@ -69,9 +74,49 @@ const PAGES = [
           </div>
           <div style={{ height: 1, background: "rgba(34,32,28,.07)", margin: "14px 0" }} />
           <div style={{ display: "flex", gap: 7 }}>
-            <span style={{ fontSize: 12.5, fontWeight: 600, color: "#95672b", background: "#f4e8d3", borderRadius: 7, padding: "5px 10px" }}>알러지 · 대두</span>
+            <span style={{ fontSize: 12.5, fontWeight: 600, color: C.allergyTx, background: C.allergyBg, borderRadius: 7, padding: "5px 10px" }}>알러지 · 대두</span>
             <span style={{ fontSize: 12.5, fontWeight: 600, color: C.sub, background: "#f1efe9", borderRadius: 7, padding: "5px 10px" }}>동물성 없음</span>
           </div>
+        </div>
+      </>
+    ),
+  },
+  {
+    title: ["어려운 성분도", "쉽게 풀어드려요"],
+    desc: ["성분을 톡 누르면 다정한 설명이 나오고,", "식약처 알레르기 유발물질은 눈에 띄게 알려줘요."],
+    hero: (
+      <>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 9 }}>
+          <Chip>정제소금</Chip>
+          <Chip bg={C.allergyBg} bd="#f0d3b6" fg={C.allergyTx}>밀가루</Chip>
+          <Chip bg={C.addBg} bd="#cfdbe3" fg={C.addTx}>잔탄검</Chip>
+        </div>
+
+        {/* 성분 설명 카드 (알레르기 강조 예시) */}
+        <div style={{ background: "#fff", borderRadius: 18, padding: 16, marginTop: 18,
+          boxShadow: "0 12px 28px -16px rgba(36,80,63,.36)" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <span style={{ fontSize: 16, fontWeight: 800, color: C.ink }}>밀가루</span>
+            <span style={{ fontSize: 11.5, fontWeight: 700, color: C.allergyTx, background: C.allergyBg,
+              borderRadius: 7, padding: "3px 8px" }}>알레르기</span>
+          </div>
+          <div style={{ marginTop: 11, background: "#FCF0E6", border: "1px solid #F3D8BF",
+            borderRadius: 12, padding: "11px 13px" }}>
+            <div style={{ fontSize: 12.5, fontWeight: 800, color: C.allergyTx, marginBottom: 5 }}>
+              ⚠️ 식약처 알레르기 유발물질
+            </div>
+            <div style={{ fontSize: 13.5, color: "#4a463f", lineHeight: 1.6 }}>
+              밀을 곱게 빻은 하얀 가루예요. 글루텐 덕분에 반죽이 쫄깃하게 뭉쳐져서 빵·면·과자의 기본이 돼요. 밀 알레르기가 있으면 조심하세요.
+            </div>
+          </div>
+        </div>
+
+        {/* 성분 분석 미니 */}
+        <div style={{ display: "flex", gap: 7, marginTop: 12 }}>
+          <Stat n="7" label="알레르기" bg={C.allergyBg} fg={C.allergyTx} />
+          <Stat n="5" label="첨가물" bg={C.addBg} fg={C.addTx} />
+          <Stat n="3" label="복합" bg={C.compBg} fg={C.compTx} />
+          <Stat n="2" label="동물성" bg={C.animalBg} fg={C.animalTx} />
         </div>
       </>
     ),
@@ -91,6 +136,14 @@ function Toggle({ children, on }) {
       border: "1px solid " + (on ? "#2F6D54" : "rgba(34,32,28,.16)"), borderRadius: 12, padding: "10px 14px" }}>
       {on && <Check />}{children}
     </span>
+  );
+}
+function Stat({ n, label, bg, fg }) {
+  return (
+    <div style={{ flex: 1, background: bg, borderRadius: 12, padding: "10px 6px", textAlign: "center" }}>
+      <div style={{ fontSize: 18, fontWeight: 800, color: fg, lineHeight: 1 }}>{n}</div>
+      <div style={{ fontSize: 11, fontWeight: 600, color: fg, marginTop: 4, opacity: .85 }}>{label}</div>
+    </div>
   );
 }
 function ResultCard({ emoji, sub, name }) {
@@ -133,12 +186,12 @@ export default function Onboarding() {
 
         {/* hero */}
         <div style={{ margin: "18px 24px 0", borderRadius: 32,
-          background: "linear-gradient(162deg,#eef5f1 0%,#e0ede7 100%)", padding: "36px 26px 40px", flex: "none" }}>
+          background: "linear-gradient(162deg,#eef5f1 0%,#e0ede7 100%)", padding: "34px 26px 36px", flex: "none" }}>
           {p.hero}
         </div>
 
         {/* text */}
-        <div style={{ padding: "42px 34px 0", flex: 1 }}>
+        <div style={{ padding: "38px 34px 0", flex: 1 }}>
           <div style={{ fontSize: 30, fontWeight: 800, letterSpacing: "-.03em", lineHeight: 1.32, color: C.ink }}>
             {p.title[0]}<br />{p.title[1]}
           </div>
