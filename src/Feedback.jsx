@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { track } from "./analytics";
 
-/* 상품 상세 맨 아래 — "만드는 사람에게 한마디" 제작자 피드백 보내기
-   보낸 내용은 PostHog의 creator_feedback 이벤트로 쌓임(제작자가 PostHog에서 확인)
-   - would_use: 실제 앱이 나오면 쓸 의향(need/improve/maybe_not/null)
-   - good: 좋았던 점 / wish: 아쉬운 점·바라는 점 */
+/* 제품 상세 맨 아래 — "만드는 사람에게 한마디" 제작자 피드백 보내기
+   PostHog creator_feedback 이벤트로 수집 (would_use / good / wish)
+   ⚠️ Choice·Field 는 반드시 컴포넌트 바깥에 정의할 것.
+      안에서 정의하면 매 렌더마다 새 컴포넌트가 되어 textarea 가 리마운트→포커스가 날아감(한 글자만 입력됨). */
 
 const C = { ink: "#23291F", sub: "#6E7468", line: "#E5E2D9", sage: "#2F6D54", soft: "#EEF5F1" };
 
@@ -13,6 +13,30 @@ const OPTS = [
   { key: "improve", label: "쓸 것 같아요, 조금만 보완되면 좋겠어요 🙂", tone: "#8A6D2F" },
   { key: "maybe_not", label: "꼭 필요하진 않은 것 같아요 🌱", tone: "#8A9086" },
 ];
+
+function Choice({ o, active, onClick }) {
+  return (
+    <button onClick={onClick}
+      style={{ width: "100%", textAlign: "left", padding: "12px 14px", borderRadius: 12, cursor: "pointer",
+        fontFamily: "inherit", fontSize: 13.5, fontWeight: 700, border: "1.5px solid " + (active ? o.tone : C.line),
+        background: active ? o.tone : "#fff", color: active ? "#fff" : C.ink }}>
+      {o.label}
+    </button>
+  );
+}
+
+function Field({ chipBg, chipTx, chip, value, onChange, placeholder }) {
+  return (
+    <div style={{ marginTop: 12 }}>
+      <span style={{ display: "inline-block", fontSize: 12, fontWeight: 700, color: chipTx, background: chipBg,
+        borderRadius: 8, padding: "4px 10px", marginBottom: 7 }}>{chip}</span>
+      <textarea value={value} onChange={(e) => onChange(e.target.value)} rows={2} placeholder={placeholder}
+        style={{ width: "100%", boxSizing: "border-box", resize: "vertical",
+          border: "1px solid " + C.line, borderRadius: 12, padding: "11px 12px", fontSize: 13.5,
+          fontFamily: "inherit", color: C.ink, outline: "none", background: "#fff", lineHeight: 1.5 }} />
+    </div>
+  );
+}
 
 export default function CreatorFeedback({ product }) {
   const [good, setGood] = useState("");
@@ -36,30 +60,6 @@ export default function CreatorFeedback({ product }) {
     setWish("");
   };
 
-  const Choice = ({ o }) => {
-    const on = use === o.key;
-    return (
-      <button onClick={() => setUse(on ? null : o.key)}
-        style={{ width: "100%", textAlign: "left", padding: "12px 14px", borderRadius: 12, cursor: "pointer",
-          fontFamily: "inherit", fontSize: 13.5, fontWeight: 700, border: "1.5px solid " + (on ? o.tone : C.line),
-          background: on ? o.tone : "#fff", color: on ? "#fff" : C.ink }}>
-        {o.label}
-      </button>
-    );
-  };
-
-  const Field = ({ chipBg, chipTx, chip, value, onChange, placeholder }) => (
-    <div style={{ marginTop: 12 }}>
-      <span style={{ display: "inline-block", fontSize: 12, fontWeight: 700, color: chipTx, background: chipBg,
-        borderRadius: 8, padding: "4px 10px", marginBottom: 7 }}>{chip}</span>
-      <textarea value={value} onChange={(e) => onChange(e.target.value)} rows={2}
-        placeholder={placeholder}
-        style={{ width: "100%", boxSizing: "border-box", resize: "vertical",
-          border: "1px solid " + C.line, borderRadius: 12, padding: "11px 12px", fontSize: 13.5,
-          fontFamily: "inherit", color: C.ink, outline: "none", background: "#fff", lineHeight: 1.5 }} />
-    </div>
-  );
-
   return (
     <div style={{ marginTop: 22, background: C.soft, border: "1px solid " + C.line, borderRadius: 16, padding: "16px 16px 18px" }}>
       <div style={{ fontSize: 14, fontWeight: 800, color: C.ink }}>만드는 사람에게 한마디 ✍️</div>
@@ -77,7 +77,10 @@ export default function CreatorFeedback({ product }) {
             혹시, 실제 앱으로 나오면 어떨 것 같으세요?
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-            {OPTS.map((o) => <Choice key={o.key} o={o} />)}
+            {OPTS.map((o) => (
+              <Choice key={o.key} o={o} active={use === o.key}
+                onClick={() => setUse(use === o.key ? null : o.key)} />
+            ))}
           </div>
           <Field chipBg="#E7F1EA" chipTx="#2C7A54" chip="☺ 좋았던 점"
             value={good} onChange={setGood} placeholder="마음에 든 점, 편했던 기능 등 (선택)" />
