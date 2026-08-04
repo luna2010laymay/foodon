@@ -169,7 +169,9 @@ function ResultCard({ emoji, sub, name }) {
 }
 
 export default function Onboarding() {
-  const [done, setDone] = useState(false);
+  // 공유 딥링크(?p=<id>)로 들어오면 온보딩을 건너뛰고 바로 상품을 보여줌
+  const [done, setDone] = useState(() =>
+    typeof window !== "undefined" && new URLSearchParams(window.location.search).has("p"));
   const [page, setPage] = useState(0);
 
   if (done) return null;
