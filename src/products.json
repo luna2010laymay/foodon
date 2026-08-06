@@ -310,7 +310,7 @@
     "id": 16,
     "name": "풀무원 특등급 국산 콩물 서리태 (960g)",
     "brand": "풀무원",
-    "cat": "음료",
+    "cat": "두유",
     "emoji": "🫘",
     "img": "/products/soymilk.jpg",
     "ing": [
@@ -675,7 +675,7 @@
     "id": 19,
     "name": "풀무원 특등급 국산 콩물 (960g)",
     "brand": "풀무원",
-    "cat": "음료",
+    "cat": "두유",
     "emoji": "🥛",
     "img": "/products/soymilk2.jpg",
     "ing": [
@@ -1823,7 +1823,7 @@
     "id": 27,
     "name": "연세두유 칼슘핏 검은콩 (190mL)",
     "brand": "연세유업",
-    "cat": "음료",
+    "cat": "두유",
     "emoji": "🥛",
     "img": "/products/yonseiblack.jpg",
     "ing": [
@@ -2010,7 +2010,7 @@
     "id": 28,
     "name": "매일두유 99.9 플레인 (950mL)",
     "brand": "매일유업",
-    "cat": "음료",
+    "cat": "두유",
     "emoji": "🥛",
     "img": "/products/maeil999.jpg",
     "ing": [
@@ -2286,7 +2286,7 @@
     "id": 30,
     "name": "갈아만든 진한 국산콩두유 무가당 (190mL)",
     "brand": "이롬",
-    "cat": "음료",
+    "cat": "두유",
     "emoji": "🥛",
     "img": "/products/eromsoy.jpg",
     "ing": [
