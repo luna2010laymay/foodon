@@ -1,8 +1,8 @@
 # 쿠팡 링크 생존확인 리포트
 
-_최종 확인: 2026-08-13 01:58 UTC · 대상 472개_
+_최종 확인: 2026-08-16 01:17 UTC · 대상 564개_
 
-**요약:** ❌ 삭제/없음 0 · ⚠️ 품절 0 · 🚫 접속차단(봇탐지) 471 · ⁉️ 확인불가(오류) 0 · ✅ 살아있음 1
+**요약:** ❌ 삭제/없음 0 · ⚠️ 품절 0 · 🚫 접속차단(봇탐지) 563 · ⁉️ 확인불가(오류) 0 · ✅ 살아있음 1
 
 | id | 상품명 | 상태 | HTTP | 비고 | 링크 |
 |---|---|---|---|---|---|
@@ -18,6 +18,8 @@ _최종 확인: 2026-08-13 01:58 UTC · 대상 472개_
 | 30 | 갈아만든 진한 국산콩두유 무가당 (190mL) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7oWxrR0U0) |
 | 31 | 풀무원 크고 단단한 두부 (1kg) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXLQtVlt7Y) |
 | 32 | 풀무원 블럭치즈돈카츠 (420g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fUbJlZTaIC) |
+| 34 | 파래 김자반 (50g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcG3jLfV7Y) |
+| 37 | 풀무원 순두부 또띠아 (225g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcMtJ95ggm) |
 | 42 | 풀무원 고소한 유기농두부 (290g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXLJpEfcOW) |
 | 43 | 풀무원 특등급 국산콩두부 (340g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXMEteWiqG) |
 | 44 | 풀무원 슬림핏 콩면 (150g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7Mj3ZQ708) |
@@ -91,18 +93,28 @@ _최종 확인: 2026-08-13 01:58 UTC · 대상 472개_
 | 125 | 츄파춥스 젤리 사워 게코 (90g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fV2ZwTl10C) |
 | 127 | 츄파춥스 미니 100개입 (600g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fV1VnwRTk4) |
 | 128 | 청정원 소시지랑 떡이랑 (440g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fT8h8irhts) |
+| 131 | 청정원 건강한 파래돌김자반 (50g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcGTTrySU8) |
+| 133 | 청정원 김밥용 단무지 (400g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcGVooKY3M) |
 | 136 | 마이노멀 알룰로스 (500g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXHiy8abF6) |
+| 141 | 곰곰 저당 참깨 소이소스 (215g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcMHmj4UtE) |
+| 161 | 곰곰 발사믹 드레싱 소스 (260g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcME7uKOYe) |
+| 165 | 곰곰 저당 시저 드레싱 (250g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcMF6ki2fs) |
 | 175 | 청정원 알룰로스 매실청 (650g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXJG2DhWh2) |
 | 177 | 백설 요리 올리고당 (700g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXHCypKOLA) |
 | 178 | 청정원 건강한 올리고당 (1.2kg) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXJDLSEUwe) |
 | 179 | 청정원 물엿 (1.2kg) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXJFxMOD12) |
 | 192 | 동원 롤유부초밥 고소한맛 (254g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fT3qALZMom) |
+| 193 | 삼립 한아름 땅콩소보루 (360g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcLIjSW0mO) |
+| 194 | 풍요로운아침 메추리알 장조림 (400g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcG5NDkCJ2) |
 | 195 | 풀무원 꼬마 유부초밥 (145.5g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fT8TaOGkHA) |
+| 196 | 곰곰 저당 통밀 식빵 (360g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcHlhdJPum) |
 | 197 | 팔도 즉석 라볶이 오리지널 (145g×4) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7nwGBoD24) |
 | 199 | 사옹원 부침명장 한입 아삭김치전 (510g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fT4HS5yl64) |
+| 202 | 삼립 더블치즈 후레쉬팡 (98g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcJng5xMBg) |
 | 203 | 팔도 비빔면 (130g×5) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7nutTJQ3U) |
 | 205 | 비비고 소고기미역국 (500g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fT4DmvbAcu) |
 | 206 | 포스트 콘푸라이트 (660g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fV3yKKsI9c) |
+| 207 | 비비고 썰은 배추김치 (500g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcGmUDoqeO) |
 | 210 | 해태 오사쯔 (60g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fV7gX1Wdjw) |
 | 211 | 오리온 오뜨 애플파이맛 (350g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fUqdbNW44a) |
 | 212 | 크라운 쵸코하임 (142g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fV3eVrk100) |
@@ -157,6 +169,7 @@ _최종 확인: 2026-08-13 01:58 UTC · 대상 472개_
 | 266 | 곰곰 김치볶음밥 (300g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fT1GTKhsWW) |
 | 268 | 곰곰 갈비 만두 (490g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7usEhfcTk) |
 | 269 | 맑은물에 촌두부 (800g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXLidDLKN2) |
+| 270 | 삼립 계란옷 입은 몬테크리스토 토스트 햄에그치즈 샌드 (180g×3) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcIuEd0fq8) |
 | 271 | 차오차이 130직화 간짜장 (180g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fT8etrfzeC) |
 | 272 | 해태 고향만두 (320g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7xeEoXHoa) |
 | 276 | 곰곰 만능두부 (300g×2) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXKPrFYPKK) |
@@ -166,6 +179,7 @@ _최종 확인: 2026-08-13 01:58 UTC · 대상 472개_
 | 282 | 곰곰 우리쌀 떡국떡 (1kg) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXNpgVcurY) |
 | 283 | 우양 쉐프스토리 바삭한 감자 올모짜핫도그 (90g×4) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fT7BMoYzpQ) |
 | 284 | 비비고 김말이 (500g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fT4tHByjYW) |
+| 285 | 베키아에누보 바질치즈 치아바타 샌드위치 (195g×4) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcIguq6a9k) |
 | 288 | 오뚜기 콤비네이션 피자 (415g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fT7xqv6qei) |
 | 289 | 오뚜기 치즈크러스트 피자 페퍼로니디럭스 (510g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fT7uqKgtzw) |
 | 290 | 남향푸드또띠아 콤비네이션 피자브리또 (125g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fT1XOy2vm0) |
@@ -184,9 +198,12 @@ _최종 확인: 2026-08-13 01:58 UTC · 대상 472개_
 | 313 | 곰곰 새우볶음밥 (250g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fT1Nwcw9m0) |
 | 314 | 청정원 달콤바삭 쌀떡꼬치 (380g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7j0TN9Rme) |
 | 316 | 풀무원 한끼 연두부 오리엔탈 유자소스 (110g×6) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXMIkHeYHk) |
+| 318 | 반찬단지 알마늘 (1kg) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcF8s2KrD2) |
 | 319 | 곰곰 꽈리고추 메추리알 장조림 (1kg) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7NLaBzTgW) |
 | 320 | 동원 딤섬 부추창펀 (390g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7uEQh8yWW) |
 | 321 | 곰곰 알뜰두부 (800g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXKXM22YLs) |
+| 324 | 반찬단지 궁채절임 (1kg) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcF6Ghz8EK) |
+| 326 | 청정원 꼬들단무지 (220g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcGWpPjW5k) |
 | 329 | 애슐리 김치 콘치즈 주먹밥 (100g×5) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fT41IuWoy4) |
 | 331 | 곰곰 단호박 샐러드 (1kg) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7NO5CQG0y) |
 | 332 | 청정원 1등급 국산콩 부침용 두부 (300g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXLBnLfRoO) |
@@ -205,6 +222,7 @@ _최종 확인: 2026-08-13 01:58 UTC · 대상 472개_
 | 352 | 곰곰 낙지젓 (250g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7NNmSfM6e) |
 | 353 | 풀무원 들기름 메밀막국수 (2인분)(391.4g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7L4puKLg4) |
 | 354 | 곰곰 무쌈 (350g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7NTJpQe5I) |
+| 355 | 베키아에누보 바질토마토치즈 치아바타 샌드위치 (185g×3) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcIhOI8u4G) |
 | 356 | 곰곰 닭갈비볶음밥 (300g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fT1JJDVPP2) |
 | 357 | 풀무원 순쌀 떡국떡 (400g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7kaszCImG) |
 | 358 | 온더고 미트 라자냐 (306g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fT7zDubmVw) |
@@ -214,8 +232,15 @@ _최종 확인: 2026-08-13 01:58 UTC · 대상 472개_
 | 391 | CJ 백설 자일로스설탕 (1kg) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXG1FRGYUe) |
 | 398 | 동원 저스트 파인애플 (425g)(고형량 265g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fWgwRjWUDs) |
 | 400 | 동원 저스트 스위트콘 (340g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fWguTeabQW) |
+| 401 | 유동 번데기 (130g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcGyfKNOii) |
+| 402 | 본죽 소고기장조림 (130g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcGeNUN4jQ) |
+| 410 | 샘표 우리엄마 메추리알 장조림 (130g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcGsBLkWrc) |
+| 413 | 리오산토 할라피뇨 슬라이스 (540g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcF497z8rQ) |
+| 414 | 라세빌라나 블랙 올리브 (370g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcF3S07kJ2) |
 | 416 | 청정원 스위트콘 (340g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXFX5P7nki) |
+| 417 | 딜리셔스 슬라이스드 오이피클 (500g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcF0oh5VlY) |
 | 421 | 자연지인 여주 돼지감자차 티백 (1g×50T) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fBQtvxB5Zk) |
+| 424 | 베베쿡 처음먹는 어린이 김자반 오리지널 (25g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcGaBoRD3s) |
 | 426 | 베베쿡 처음먹는 유기농 순떡뻥 백미 (20g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fUm7tESfPE) |
 | 427 | 맘마밀 안심이유식 퓨레 바나나와 단호박 (100g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fT3FPuafw4) |
 | 428 | 베베쿡 처음먹는 빼빼롱뻥 청포도 (30g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fUmvlH9856) |
@@ -225,14 +250,65 @@ _최종 확인: 2026-08-13 01:58 UTC · 대상 472개_
 | 433 | 아이얌 초유 웨하스 우유 (36g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fUoW4X3RPo) |
 | 434 | 아이얌 DHA 웨하스 요구르트 (36g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fUoNPp0qCi) |
 | 435 | 아이얌 칼슘 웨하스 딸기 (36g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fUoVcrBP8C) |
+| 436 | 밀도 호밀잡곡식빵 (480g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcIdsigrme) |
+| 438 | 밀도 소화가 잘되는 우유로 만든 쌀식빵 (480g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcH9BUofT2) |
+| 439 | 밀도 소화가 잘되는 우유로 만든 쌀 모닝롤 (30g×6) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcH77kBsHs) |
+| 440 | 교토마블 플레인 데니쉬 식빵 (440g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcHpUSZzmm) |
+| 441 | 노아베이커리 크랜베리 호두빵 (190g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcHukoavkG) |
+| 443 | 삼립 56시간 저온숙성 탕종 찰 숙식빵 (420g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcImavbLaK) |
+| 444 | 신라명과 쫄깃한 생우유식빵 (390g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcMkvMe4iq) |
+| 445 | 신라명과 달보드레 카스테라 (36g×5) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcL8UCEese) |
+| 446 | 삼립 진한 크림치즈 휘낭시에 (45g×8) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcJIHDQubs) |
+| 449 | 삼립 촉촉 치즈케익 (70g×10) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcJ8zkJqlU) |
+| 450 | 풀무원 통밀 또띠아 (25g×6) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcMvbSozaS) |
+| 451 | 삼립 상쾌한 아침 우유식빵 (300g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcJsefvIjI) |
+| 452 | 곰곰 데일리 식빵 (330g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcHdJXKEOi) |
+| 453 | 미각제빵소 초코 소라빵 (90g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcH5iYypgW) |
 | 455 | 창억떡 부드럽고 쫄깃한 호박인절미 (500g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7i6aDhBca) |
+| 456 | 삼립 아침미소 Fresh 밀배아발효 샌드위치 식빵 (790g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcJBxMBqKG) |
+| 457 | 삼립 초당옥수수 크림빵 (100g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcJ2MXw1kG) |
 | 458 | 그린래빗 에그햄치즈 페스트리 샌드위치 (165g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fT1Pg7HCqi) |
+| 459 | 신라명과 인생모닝롤 (30g×10) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcMa5Ro2er) |
+| 460 | 삼립 허쉬 초코롤 (87g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcLMR4u5xk) |
+| 461 | 삼립 포켓몬 돌아온 로켓단 초코롤 (85g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcLzc0lmAC) |
+| 462 | 삼립 쫄깃한 잉글리쉬머핀 (60g×4) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcJ08Xx1SS) |
 | 463 | 오뚜기 UNO 멕시칸브리또 페퍼로니트리플치즈 (125g×3) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fT56TOp3pA) |
 | 464 | 떡편 단호박 카스테라 인절미 (50g×10) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXOnb4kSaa) |
+| 465 | 맘쿠킹 프렌치 베이커리샵 피타브레드 (70g×12) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcHV4EqIyi) |
+| 466 | 삼립 탕종땅콩 미니샌드 (200g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcKkXZbRGm) |
+| 467 | 풀스쿡 슈가 두부도너츠 (45g×5) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcMDJh888y) |
+| 468 | 던킨 레인보우 초코링 도넛 (49g×4) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcHDpQta6m) |
+| 469 | 18겹 밀푀유 식빵 (80g×8) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcHajfzxWC) |
 | 470 | 홍루이젠 호밀빵 햄치즈 샌드위치 (74g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fUcfzaUYoK) |
+| 471 | 삼립 토종효모로 만든 로만밀 통밀식빵 (840g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcKFXbEquO) |
+| 472 | 곰곰 탕종숙식빵 (410g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcHm4KBLci) |
+| 473 | 던킨 바바리안 듬뿍 미니도넛 (25g×10) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcHEJColS8) |
+| 474 | 곰곰 올리브 베이글 (120g×6) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcHhiwPBMi) |
 | 475 | 삼립 프리미엄 햄에그 샌드위치 (165g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fT4ZnHNkyq) |
+| 476 | 삼립 포켓몬스터 딸기&초코 컵케익 (84g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcLEkfJwpo) |
+| 477 | 연세우유 생크림 우유롤 (55g×6) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcMm5rBJAq) |
+| 478 | 델리팜 더 부드러운 식빵 (380g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcHIfRg4Mm) |
+| 480 | 파스키에 팡오쇼콜라 (270g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcMr6Ql1KS) |
+| 481 | 삼립 밀크 후레쉬팡 (560g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcJpK9Td48) |
+| 482 | 삼립 정통 크림빵 (75g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcJDYawZoa) |
+| 483 | 곰곰 달달 꿀 호떡 (70g×10) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcHceF1wKO) |
 | 484 | 창옥 무지개설기 (500g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7jUtcvBRs) |
+| 485 | 삼립 꼬마 보름달 딸기크림 (45g×6) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcIRbNs9Js) |
+| 486 | 곰곰 통밀 가득 식빵 (430g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcHoo1NhJs) |
+| 487 | 신라명과 단팥빵 (90g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcLTnmCrWC) |
+| 488 | 삼립 포켓몬스터 거북왕의 딥초코 와플 (90g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcLAJtIhDE) |
+| 489 | 삼립 Ready B 호밀 브라운 브레드 (85g×7) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcInoHGSpE) |
+| 490 | 삼립 캘리포니아 호두듬뿍 타르트 (40g×6) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcKe4avbtk) |
 | 491 | 시루조아 굳지않는 흰가래떡 (420g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXQSrPFXSC) |
+| 492 | 크럼 소프트 프랑스 (50g×10) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcMqaFSJ9E) |
+| 493 | 삼립 포켓몬스터 잠만보의 초코크림빵빵 (120g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcLFLaCT8e) |
+| 494 | 삼립 초당옥수수 크림소보루 (105g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcJ6kfNoGW) |
+| 495 | 삼립 포켓몬스터 돌아온 고오스 초코케익 (80g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcLCop8Vki) |
+| 496 | 삼립 소화가 잘되는 우유가 들어간 생크림빵 (95g×2) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcJtPTQLtY) |
+| 497 | 곰곰 버터 소금빵 (70g×4) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcHfRyw2uG) |
+| 498 | 삼립 yaam 브리오슈 식빵 (610g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcIsmrgREW) |
+| 499 | 디엔비 글레이즈드 도넛 (50g×10) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcHOY2ni0q) |
+| 500 | 삼립 정통 보름달 (66g×3) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcJycmaxpc) |
 | 501 | 샘트리 맛병아리콩 오리지널 (20g×20) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fUoIqQkr1w) |
 | 502 | CJ 맛밤 (80g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fWeKg335vp) |
 | 505 | CJ 맛콩 검은콩 (50g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fUcjmdHFcG) |
@@ -244,13 +320,20 @@ _최종 확인: 2026-08-13 01:58 UTC · 대상 472개_
 | 529 | 캐기 웨이퍼 미니 코코넛 (104g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fV3bFUTj76) |
 | 607 | 김석원 와사비 낫또 (45.5g×2) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7N5iJeOBg) |
 | 615 | 연리희재 개성주악 (35g×4) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7iTSzYMto) |
+| 626 | 브뢰드카세 저당 통밀 포켓 브레드 (90g×4) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcIjzcKa1k) |
+| 627 | 샐러드미인 스위트맛살샐러드 (1kg) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcGrbGtVxQ) |
+| 630 | 일가집 쫄깃치자단무지 (200g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcGzDyZYWq) |
+| 632 | 순창문옥례 고추장 매실장아찌 (400g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcGuMDl7fM) |
 | 633 | 오뚜기 청담미역 가자미미역국 (500g)(2인분) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fT6lHoK8BM) |
 | 634 | 고래사어묵 풍성한 부대전골 (830g)(3인분) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fT0PIWbeCW) |
+| 638 | 디저트랩 루씨허 버터떡 (140g)(35g×4) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcHRBaiLpQ) |
 | 640 | 베베쿡 한입에 쏙 더블치즈볼 (25g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fUnau1kGVE) |
 | 644 | 한만두 달달한 콘치즈 군만두 (420g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7xc0owKho) |
 | 645 | 굿푸드 얇피 통통새우만두 (1.4kg) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7uCQfweNE) |
 | 646 | 굿푸드 삼색 옹심이물만두 (1kg) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7uABVs4cK) |
 | 648 | 동원 딤섬 사천우육완탕 (336g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7uHSMUMc8) |
+| 649 | 누테이블 플레인 에그샐러드 (500g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcFJkrB0qy) |
+| 650 | 샐러드미인 살사후실리샐러드 (1kg) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcGoPNvRL2) |
 | 651 | 뽀로로 한입갈비만두 (500g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7wmJg7F7s) |
 | 652 | 오뚜기 X.O. 감자떡만두 고기 (320g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7wPTW8LcW) |
 | 670 | 백설 알룰로스 (700g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXHz0TAD7c) |
@@ -469,6 +552,9 @@ _최종 확인: 2026-08-13 01:58 UTC · 대상 472개_
 | 1003 | 김구원선생 유기농 국산연두부 (130g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXKZiWJ5ZA) |
 | 1004 | 모찌리도후 모찌모찌 두부 (100g×2개입/소스포함) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXLj8ZYcmW) |
 | 1005 | 강릉초당두부 떠먹는 한 컵 초당순두부 (285g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXKFVRMxIi) |
+| 1010 | 순창문옥례 김장아찌 (250g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcGvOL8jzE) |
+| 1011 | 반찬단지 더욱더 맛있는 오그락지 (1kg) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcFMMFAeNE) |
+| 1012 | 반찬단지 더욱더 맛있는 짜차이채무침 (1kg) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcFOI2vAo8) |
 | 1013 | 농심 얼큰 장칼국수 (412g/103g×4) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7lxX7sF64) |
 | 1014 | 사토노유키 실큰두부 (300g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXLwXS3zSm) |
 | 1015 | 바릴라 콘킬리에 리가테 No.93 (500g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7ziCVsTK0) |
@@ -477,4 +563,10 @@ _최종 확인: 2026-08-13 01:58 UTC · 대상 472개_
 | 1025 | 티바인 알룰로스 프리미엄 바닐라빈 (520g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXQyPA3YwC) |
 | 1026 | 티바인 알룰로스 헤이즐넛 (400g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXQz0gYUBU) |
 | 1027 | 티바인 알룰로스 얼그레이 (400g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXQwFbs71E) |
+| 1028 | 닥터로빈 제로 떡볶이 오리지널 (220g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcFCkAAucK) |
+| 1029 | 닥터로빈 제로 떡볶이 로제 (220g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcFAyxp0ns) |
+| 1030 | 금미옥 국물떡볶이 (2인분)(480g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcFy2O9t3k) |
+| 1031 | 상국이네 떡볶이 (2~3인분)(627g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcFaatq91g) |
+| 1032 | 오마뎅 진짜 부산 떡볶이 (1~2인분)(352g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcFDTjPsnQ) |
+| 1033 | 추억의 국민학교 떡볶이 오리지널 (2~3인분)(600g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcFGJjC6Ee) |
 | 18 | 올가 현미 건빵 (150g) | ✅ 살아있음 | 200 | 정상 | [열기](https://shop.pulmuone.co.kr/shop/goodsView/42438?ContentCd=%ED%98%84%EB%AF%B8%EA%B1%B4%EB%B9%B5&PageCd=P_PC_SerKwd) |
