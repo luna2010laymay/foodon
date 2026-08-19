@@ -11,3 +11,7 @@ body {
 
 /* PC(온라인) 큰 화면에서만 비율 그대로 확대 — 배열(줄바꿈)은 폰과 100% 동일, 실제 폰은 그대로 */
 @media (min-width: 768px) { #root { zoom: 1.25; } }
+
+/* 폰 카드 내부 스크롤 영역 — 스크롤바 숨김(스크롤은 동작) */
+.fo-scroll { scrollbar-width: none; -ms-overflow-style: none; }
+.fo-scroll::-webkit-scrollbar { display: none; width: 0; height: 0; }
