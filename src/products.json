@@ -130951,5 +130951,26 @@
    "쇠고기"
   ],
   "reviews": []
+ },
+ {
+  "id": 1049,
+  "name": "배마마 다짐 소고기 (90g)",
+  "brand": "배마마",
+  "cat": "축산",
+  "emoji": "🐮",
+  "img": "/products/bemama_beef_dajim.jpg",
+  "ing": [
+   [
+    "국내산 한우(부위: 홍두깨, 우둔) 100%",
+    [
+     "allergy",
+     "animal"
+    ]
+   ]
+  ],
+  "contains": [
+   "쇠고기"
+  ],
+  "reviews": []
  }
 ]
