@@ -1,8 +1,8 @@
 # 쿠팡 링크 생존확인 리포트
 
-_최종 확인: 2026-11-01 04:41 UTC · 대상 564개_
+_최종 확인: 2026-11-04 05:02 UTC · 대상 564개_
 
-**요약:** ❌ 삭제/없음 0 · ⚠️ 품절 0 · 🚫 접속차단(봇탐지) 563 · ⁉️ 확인불가(오류) 0 · ✅ 살아있음 1
+**요약:** ❌ 삭제/없음 0 · ⚠️ 품절 0 · 🚫 접속차단(봇탐지) 561 · ⁉️ 확인불가(오류) 2 · ✅ 살아있음 1
 
 | id | 상품명 | 상태 | HTTP | 비고 | 링크 |
 |---|---|---|---|---|---|
@@ -316,7 +316,6 @@ _최종 확인: 2026-11-01 04:41 UTC · 대상 564개_
 | 509 | 트라와일드 아보카도칩스 토마토살사맛 (40g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fV3rqHPD1U) |
 | 510 | 한울 촉촉 고구마 스틱 (20g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fV4uMGuS0y) |
 | 511 | 오뚜기 스위트콘나쵸 (60g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fUpLl0U2Lc) |
-| 513 | 먹잇 표고버섯칩 트러플향 (30g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fUlGXG7pMi) |
 | 529 | 캐기 웨이퍼 미니 코코넛 (104g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fV3bFUTj76) |
 | 607 | 김석원 와사비 낫또 (45.5g×2) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7N5iJeOBg) |
 | 615 | 연리희재 개성주악 (35g×4) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/f7iTSzYMto) |
@@ -541,7 +540,6 @@ _최종 확인: 2026-11-01 04:41 UTC · 대상 564개_
 | 992 | 데메트라 냉동 그린빈스 (1kg) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fWgqnvX7yC) |
 | 993 | 신광 냉동 삶은 감자 (1kg) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXE6UnZHFc) |
 | 994 | 데메트라 냉동 표고버섯 슬라이스 (1kg) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fWgshy62ua) |
-| 995 | 곰곰 간편한 찌개용 채소 (500g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fWfhBjanAq) |
 | 996 | 신광 냉동 찐 단호박 (1kg) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXFo63SVsy) |
 | 997 | 마당발 냉동 삼색피망 (1kg) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fWgx1uXKRU) |
 | 998 | 팜조아 뚝딱! 청양고추 (400g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/fXF2ikrg9k) |
@@ -569,4 +567,6 @@ _최종 확인: 2026-11-01 04:41 UTC · 대상 564개_
 | 1031 | 상국이네 떡볶이 (2~3인분)(627g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcFaatq91g) |
 | 1032 | 오마뎅 진짜 부산 떡볶이 (1~2인분)(352g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcFDTjPsnQ) |
 | 1033 | 추억의 국민학교 떡볶이 오리지널 (2~3인분)(600g) | 🚫 접속차단(봇탐지) | 403 | 봇 차단 추정 | [열기](https://link.coupang.com/a/gcFGJjC6Ee) |
+| 513 | 먹잇 표고버섯칩 트러플향 (30g) | ⁉️ 확인불가(오류) | - | HTTPSConnectionPool(host='link.coupang.com', port=443): Read | [열기](https://link.coupang.com/a/fUlGXG7pMi) |
+| 995 | 곰곰 간편한 찌개용 채소 (500g) | ⁉️ 확인불가(오류) | - | HTTPSConnectionPool(host='www.coupang.com', port=443): Read  | [열기](https://link.coupang.com/a/fWfhBjanAq) |
 | 18 | 올가 현미 건빵 (150g) | ✅ 살아있음 | 200 | 정상 | [열기](https://shop.pulmuone.co.kr/shop/goodsView/42438?ContentCd=%ED%98%84%EB%AF%B8%EA%B1%B4%EB%B9%B5&PageCd=P_PC_SerKwd) |
